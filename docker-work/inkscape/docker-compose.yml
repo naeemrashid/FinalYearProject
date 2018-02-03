@@ -1,0 +1,12 @@
+version: '3.0'
+services:
+ inkspace:
+  build: .
+  container_name: inkspace
+  volumes:
+   - /etc/localtime:/etc/localtime
+   - /tmp/.X11-unix:/tmp/.X11-unix
+   - /home/$USER/containers/inkspace:/workspace
+  env_file:
+   - env_file.env
+
