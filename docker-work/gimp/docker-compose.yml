@@ -1,0 +1,11 @@
+version: '3.0'
+services:
+ gimp:
+  build: .
+  container_name: gimp
+  volumes:
+   - /etc/localtime:/etc/localtime
+   - /tmp/.X11-unix:/tmp/.X11-unix
+   - /home/$USER/Pictures:/root/Pictures
+  environment:
+   - DISPLAY=unix$DISPLAY
