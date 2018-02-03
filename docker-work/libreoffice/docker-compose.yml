@@ -1,0 +1,12 @@
+version: '3.0'
+services:
+ libreoffice:
+  build: .
+  container_name: libreoffice
+  volumes:
+   - /etc/localtime:/etc/localtime
+   - /tmp/.X11-unix:/tmp/.X11-unix
+   - /home/$USER/containers/libreOffice:/workspace
+  env_file:
+   - env_file.env
+
