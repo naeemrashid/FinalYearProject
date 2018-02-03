@@ -1,0 +1,14 @@
+version: '3.0'
+services:
+ vlc:
+  build: .
+  container_name: vlc
+  volumes:
+   - /etc/localtime:/etc/localtime
+   - /tmp/.X11-unix:/tmp/.X11-unix
+   - /home/$USER:/home/vlc
+  environment:
+   - DISPLAY=unix$DISPLAY
+  devices:
+   - /dev/snd
+   - /dev/dri
