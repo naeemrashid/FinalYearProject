@@ -16,6 +16,8 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 RUN apk --no-cache add \
 	--repository https://dl-3.alpinelinux.org/alpine/edge/testing \
 	libreoffice \
-	ttf-dejavu
+	ttf-dejavu \
+        && mkdir -p /workspace \
+WORKDIR /workspace
 
 ENTRYPOINT [ "libreoffice" ]
