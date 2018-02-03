@@ -1,0 +1,11 @@
+version: '3.0'
+services:
+ atom:
+  build: .
+  container_name: atom
+  volumes:
+   - /etc/localtime:/etc/localtime
+   - /tmp/.X11-unix:/tmp/.X11-unix
+   - /home/$USER/Documents:/home/Documents
+  environment:
+   - DISPLAY=unix$DISPLAY
