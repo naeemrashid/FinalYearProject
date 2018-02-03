@@ -1,0 +1,14 @@
+version: '3.0'
+services:
+ firefox:
+  build: .
+  container_name: firefox
+  volumes:
+   - /etc/localtime:/etc/localtime
+   - /tmp/.X11-unix:/tmp/.X11-unix
+   - /home/$USER/Downloads:/home/developer/Downloads
+  environment:
+   - DISPLAY=unix$DISPLAY
+  devices:
+   - /dev/snd
+   - /dev/dri
