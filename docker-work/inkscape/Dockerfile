@@ -18,7 +18,7 @@ RUN add-apt-repository ppa:inkscape.dev/stable && \
 	apt-get update && apt-get install -y \
 	inkscape \
 	--no-install-recommends \
-        && mkdir -p /workspace
+        && mkdir -p /workspace \
 	&& rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace
