@@ -23,6 +23,11 @@ RUN add-apt-repository ppa:inkscape.dev/stable && \
         && mkdir -p /workspace \
 	&& rm -rf /var/lib/apt/lists/*
 
-WORKDIR /workspace
+ENV HOME /home/inkspace
+RUN useradd --create-home --home-dir $HOME inkspace \
+	&& chown -R inkspace:inkspace $HOME
+
+USER inkspace
+WORKDIR inkspace
 
 ENTRYPOINT [ "inkscape" ]
