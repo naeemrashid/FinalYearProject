@@ -6,6 +6,6 @@ services:
   volumes:
    - /etc/localtime:/etc/localtime
    - /tmp/.X11-unix:/tmp/.X11-unix
-   - /home/$USER/Pictures:/root/Pictures
+   - /home/$USER/Pictures:/home/gimp/Pictures
   environment:
    - DISPLAY=unix$DISPLAY

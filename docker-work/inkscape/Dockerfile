@@ -16,6 +16,8 @@ RUN apt-get update && apt-get install -y \
 
 RUN add-apt-repository ppa:inkscape.dev/stable && \
 	apt-get update && apt-get install -y \
+        libgl1-mesa-dri \
+	libgl1-mesa-glx \
 	inkscape \
 	--no-install-recommends \
         && mkdir -p /workspace \

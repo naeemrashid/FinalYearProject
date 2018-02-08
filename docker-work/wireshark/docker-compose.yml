@@ -1,12 +1,11 @@
 version: '3.0'
 services:
- inkspace:
+ wireshark:
   build: .
-  container_name: inkspace
+  container_name: wireshark
   volumes:
    - /etc/localtime:/etc/localtime
    - /tmp/.X11-unix:/tmp/.X11-unix
-   - /home/$USER/containers/inkspace:/workspace
+   - /home/$USER/containers/wireshark:/home/wireshark
   environment:
    - DISPLAY=unix$DISPLAY
-
