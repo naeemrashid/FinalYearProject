@@ -6,7 +6,7 @@ services:
   volumes:
    - /etc/localtime:/etc/localtime
    - /tmp/.X11-unix:/tmp/.X11-unix
-   - /home/$USER/containers/libreOffice:/workspace
+   - /home/$USER/containers/libreOffice:/home/libreoffice
   env_file:
    - env_file.env
 

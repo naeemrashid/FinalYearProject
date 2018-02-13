@@ -44,21 +44,23 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV ATOM_VERSION 1.23.3
-
-# download the source
 RUN buildDeps=' \
 		ca-certificates \
 		curl \
 	' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
+	&& curl -L https://github.com/atom/atom/releases/download/${ATOM_VERSION}/atom-amd64.deb > /tmp/atom.deb \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& curl -sSL https://github.com/atom/atom/releases/download/v${ATOM_VERSION}/atom-amd64.deb -o /tmp/atom-amd64.deb \
 	&& dpkg -i /tmp/atom-amd64.deb \
 	&& rm -rf /tmp/*.deb \
-        && mkdir -p /home/Documents \
 	&& apt-get purge -y --auto-remove $buildDeps
-WORKDIR /home/Documents
+
+ENV HOME /home/atom
+RUN useradd --create-home --home-dir $HOME atom \
+        && chown -R atom:atom $HOME
+USER atom
+WORKDIR atom
 
 # Autorun atom
 ENTRYPOINT [ "atom", "--foreground" ]

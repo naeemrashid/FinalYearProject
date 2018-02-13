@@ -8,5 +8,6 @@ services:
    - /tmp/.X11-unix:/tmp/.X11-unix
    - /home/$USER/Documents:/home/Documents
   env_file:
-   - env_file.env
+   - DISPLAY = unix$DISPLAY
+   - ATOM_VERSION=1.23.3
 

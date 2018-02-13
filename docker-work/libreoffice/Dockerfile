@@ -1,23 +1,17 @@
-# Run Libreoffice in a container
+FROM ubuntu:14.04
+LABEL maintainer "Naeem Rashid <naeemb7070@gmail.com>"
 
-# docker run -d \
-#	-v /etc/localtime:/etc/localtime:ro \
-#	-v /tmp/.X11-unix:/tmp/.X11-unix \
-#	-e DISPLAY=unix$DISPLAY \
-#	-v $HOME/slides:/root/slides \
-#	-e GDK_SCALE \
-#	-e GDK_DPI_SCALE \
-#	--name libreoffice \
-#	jess/libreoffice
-#
-FROM alpine:latest
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+RUN apt-get update && \
+apt-get install -y libreoffice-java-common \
+libreoffice-base \
+libreoffice \
+--no-install-recommends \
+&& rm -rf /var/lib/apt/lists/* 
+ENV HOME /home/libreoffice
+RUN useradd --create-home --home-dir $HOME libreoffice \
+        && chown -R libreoffice:libreoffice $HOME
+USER libreoffice
+WORKDIR libreoffice
 
-RUN apk --no-cache add \
-	--repository https://dl-3.alpinelinux.org/alpine/edge/testing \
-	libreoffice \
-	ttf-dejavu \
-        && mkdir -p /workspace \
-WORKDIR /workspace
 
 ENTRYPOINT [ "libreoffice" ]
