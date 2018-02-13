@@ -7,4 +7,4 @@ RUN useradd --create-home --home-dir $HOME eclipse \
         && chown -R eclipse:eclipse $HOME
 USER eclipse
 WORKDIR eclipse
-ENTRYPOINT ["eclipse"]
+ENTRYPOINT [ "eclipse","-data","/home/eclipse" ]
