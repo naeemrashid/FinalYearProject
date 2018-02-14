@@ -6,6 +6,7 @@ ENV HOME /home/codeblocks
 RUN useradd --create-home --home-dir $HOME codeblocks \
         && chown -R codeblocks:codeblocks $HOME \
         && mkdir $HOME/workspace
-USER codeblocks
+# USER codeblocks
+USER root
 WORKDIR workspace
 ENTRYPOINT [ "codeblocks" ]
