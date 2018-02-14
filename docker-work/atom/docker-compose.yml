@@ -7,7 +7,7 @@ services:
    - /etc/localtime:/etc/localtime
    - /tmp/.X11-unix:/tmp/.X11-unix
    - /home/$USER/Documents:/home/Documents
-  env_file:
+  environment:
    - DISPLAY = unix$DISPLAY
    - ATOM_VERSION=1.23.3
 

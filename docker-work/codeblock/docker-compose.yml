@@ -1,0 +1,11 @@
+version: '3.0'
+services:
+ codeblocks:
+  build: .
+  container_name: codeblocks
+  volumes:
+   - /tmp/.X11-unix:/tmp/.X11-unix
+  #  - /home/$USER/containers/codeblocks:/home/codeblocks/.config
+   - /home/$USER/containers/codeblocks/workspace:/home/codeblocks/workspace
+  environment:
+   - DISPLAY=unix$DISPLAY
