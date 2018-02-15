@@ -1,0 +1,10 @@
+# A list of preconfigured Desktop applications with Dockerfile and docker-compose
++ [atom](https://github.com/naeemkhan12/FinalYearProject/tree/master/docker-work/atom)
++ [eclipse](https://github.com/naeemkhan12/FinalYearProject/tree/master/docker-work/eclipse)
++ [codeblocks](https://github.com/naeemkhan12/FinalYearProject/tree/master/docker-work/codeblocks)
++ [gimp](https://github.com/naeemkhan12/FinalYearProject/tree/master/docker-work/gimp)
++ [inkspace](https://github.com/naeemkhan12/FinalYearProject/tree/master/docker-work/inkspace)
++ [meanstack](https://github.com/naeemkhan12/FinalYearProject/tree/master/docker-work/meanstack)
++ [wireshark](https://github.com/naeemkhan12/FinalYearProject/tree/master/docker-work/wireshark)
++ [firefox](https://github.com/naeemkhan12/FinalYearProject/tree/master/docker-work/firefox)
++ [vlc](https://github.com/naeemkhan12/FinalYearProject/tree/master/docker-work/vlc)
