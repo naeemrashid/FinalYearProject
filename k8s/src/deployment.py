@@ -6,12 +6,11 @@ def main():
     # utility. If no argument provided, the config will be loaded from
     # default location.
     config.load_kube_config()
-
     with open(path.join(path.dirname(__file__), "nginx-deployment.yaml")) as f:
         dep = yaml.load(f)
-        # k8s_beta = client.ExtensionsV1beta1Api()
-        k8s_stable = client.ExtensionsApi()
-        resp = k8s_stable.create_namespaced_deployment(body=dep, namespace="default")
+        # v1 = client.CoreV1Api()
+        k8s_beta = client.ExtensionsV1beta1Api()
+        resp = k8s_beta.create_namespaced_deployment(body=dep, namespace="default")
         print("Deployment created. status='%s'" % str(resp.status))
 
 if __name__ == '__main__':
