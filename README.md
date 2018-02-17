@@ -6,3 +6,6 @@
 - [ ] Creation of virtual laboratory with VNC enabled remote Desktops powered by OpenStack.
 - [ ] Integration of Virtual lab with web-portal.
 - [ ] Automation of process involving downloading and running of selected application from web-portal to user local machine or on virtual laboratory.
+
+
+![Diagram](https://github.com/naeemkhan12/FinalYearProject/blob/python-client/EducationalCloudResources/structure.png)
