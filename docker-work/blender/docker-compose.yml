@@ -1,0 +1,13 @@
+version: '3.0'
+services:
+ blender:
+  build: .
+  container_name: blender
+  volumes:
+   - /etc/localtime:/etc/localtime
+   - /tmp/.X11-unix:/tmp/.X11-unix
+   - /home/$USER/Pictures:/home/blender/Pictures
+  environment:
+   - DISPLAY=unix$DISPLAY
+  devices:
+  - /dev/dri
