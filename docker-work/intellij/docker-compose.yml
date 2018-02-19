@@ -1,0 +1,11 @@
+version: '3.0'
+services:
+ intellij-idea:
+  build: .
+  container_name: intellij-idea
+  volumes:
+   - /tmp/.X11-unix:/tmp/.X11-unix
+   - /home/$USER/containers/intellij-idea/:/home/root/
+  environment:
+   - DISPLAY=unix$DISPLAY
+   - VERSION=2017.2.1
