@@ -1,0 +1,14 @@
+version: '3.0'
+services:
+ scratch:
+  build: .
+  container_name: scratch
+  volumes:
+   - /etc/localtime:/etc/localtime
+   - /tmp/.X11-unix:/tmp/.X11-unix
+   - /home/$USER/containers/scratch/:/home/root/
+  environment:
+   - DISPLAY=unix$DISPLAY
+  devices:
+  - /dev/dri
+  - /dev/snd
