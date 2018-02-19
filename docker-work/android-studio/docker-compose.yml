@@ -1,0 +1,10 @@
+version: '3.0'
+services:
+ android-studio:
+  build: .
+  container_name: android-studio
+  volumes:
+   - /tmp/.X11-unix:/tmp/.X11-unix
+   - /home/$USER/containers/android-studio/:/home/root/
+  environment:
+   - DISPLAY=unix$DISPLAY
