@@ -5,7 +5,7 @@ services:
   container_name: eclipse
   volumes:
    - /tmp/.X11-unix:/tmp/.X11-unix
-   - /home/$USER/containers/eclipse:/home/eclipse/.config
+#   - /home/$USER/containers/eclipse:/home/eclipse/.config
    - /home/$USER/containers/eclipse/workspace:/home/eclipse/workspace
   environment:
    - DISPLAY=unix$DISPLAY
