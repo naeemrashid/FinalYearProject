@@ -1,14 +1,11 @@
 version: '3.0'
 services:
- vlc:
+ teamviewer:
   build: .
-  container_name: vlc
+  container_name: teamviewer
   volumes:
    - /etc/localtime:/etc/localtime
    - /tmp/.X11-unix:/tmp/.X11-unix
-   - /home/$USER:/home/vlc
+   - /containers/teamviewer:/home/root
   environment:
-   - DISPLAY=unix$DISPLAY
-  devices:
-   - /dev/snd
-   - /dev/dri
+   - DISPLAY=$DISPLAY
