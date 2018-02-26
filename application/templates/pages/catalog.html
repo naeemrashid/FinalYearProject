@@ -11,8 +11,8 @@
 <div class="col-md-10 col-sm-8 col-xs-12">
     <div class="row">
         {% from "_macros.html" import add_application %}
-        {% for i in range(16) %}
-        {{ add_application("title","subtitle","https://wordpress.com","static/ico/apple-touch-icon-114-precomposed.png") }}
+        {% for application in application_catalog %}
+        {{ add_application(application.title ,application.sub_title,application.url,application.icon) }}
         {% endfor %}
     </div>
 </div>

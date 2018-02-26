@@ -54,17 +54,19 @@ def about():
     return render_template('pages/placeholder.about.html')
 @app.route('/catalog')
 def catalog():
-    return render_template('pages/catalog.html')
+    application_catalog = mongo.db.catalog.find()
+    return render_template('pages/catalog.html',application_catalog=application_catalog)
 
 @app.route('/add')
 def add():
-    payload={
-        'title': 'eclipse',
-        'sub_title':'Java IDE by eclipse platform',
-        'url':'https://www.eclipse.com',
-        'icon':'https://upload.wikimedia.org/wikipedia/commons/b/bd/Eclipse_Faenza.svg'
-    }
-    mongo.db.catalog.insert_one(payload)
+    # payload={
+    #     'title': 'eclipse',
+    #     'sub_title':'Java IDE by eclipse platform',
+    #     'url':'https://www.eclipse.com',
+    #     'icon':'static/ico/libreoffice_writer_128.jpg'
+    # }
+    payload=generate_payload()
+    mongo.db.catalog.insert_many(payload)
     return "User inserted"
 @app.route('/login')
 def login():
@@ -104,6 +106,103 @@ if not app.debug:
     file_handler.setLevel(logging.INFO)
     app.logger.addHandler(file_handler)
     app.logger.info('errors')
+#----------------------------------------------------------------------------#
+# Generate Some Payload
+#----------------------------------------------------------------------------#
+
+def generate_payload():
+    payload=[{
+        'title': 'Eclipse',
+        'sub_title':'Java IDE by eclipse platform',
+        'url':'#',
+        'icon':'static/ico/eclipse_128.png'
+    },
+    {
+        'title': 'LibreOffice Writer',
+        'sub_title':'Open Source Document Editors',
+        'url':'#',
+        'icon':'static/ico/libreoffice_writer_128.jpg'
+    },
+    {
+        'title': 'LibreOffice Calculator',
+        'sub_title':'Open Source Office Suite for .csv files',
+        'url':'#',
+        'icon':'static/ico/libreoffice_calc_128.jpg'
+    },
+    {
+        'title': 'LibreOffice Draw',
+        'sub_title':'Open Source Drawing Tool',
+        'url':'#',
+        'icon':'static/ico/libreoffice_draw_128.png'
+    },
+    {
+        'title': 'LibreOffice Impress',
+        'sub_title':'Open Source Document Presentation Editors/Maker',
+        'url':'#',
+        'icon':'static/ico/libreoffice_present_128.png'
+    },
+    {
+        'title': 'Pycharm Community Edition',
+        'sub_title':'Open Source IDE for Python Development',
+        'url':'#',
+        'icon':'static/ico/pycharm_128.png'
+    },
+    {
+        'title': 'Intellij Idea Community Edition',
+        'sub_title':'Open Source IDE for java Development',
+        'url':'#',
+        'icon':'static/ico/idea_128.png'
+    },
+    {
+        'title': 'Scratch',
+        'sub_title':'Open Source Code Block Editor for Kids',
+        'url':'#',
+        'icon':'static/ico/scratch_128.jpg'
+    },
+    {
+        'title': 'VLC videolan Media Player',
+        'sub_title':'Open Source Media Player by videolan',
+        'url':'#',
+        'icon':'static/ico/vlc_128.jpg'
+    },
+    {
+        'title': 'wireshark',
+        'sub_title':'Open Source Network Debugging Tool',
+        'url':'#',
+        'icon':'static/ico/wireshark_128.png'
+    },
+    {
+        'title': 'Inkspace',
+        'sub_title':'Open Source Image Editor',
+        'url':'#',
+        'icon':'static/ico/inkspace_128.png'
+    },
+    {
+        'title': 'Gimp',
+        'sub_title':'Open Source Image Editor',
+        'url':'#',
+        'icon':'static/ico/gimp_128.jpg'
+    },
+    {
+        'title': 'Firefox',
+        'sub_title':'Open Source Browser',
+        'url':'#',
+        'icon':'static/ico/firefox_128.jpg'
+    },
+    {
+        'title': 'Arduino',
+        'sub_title':'Electrical Stuff',
+        'url':'#',
+        'icon':'static/ico/arduino_128.png'
+    },
+    {
+        'title': 'blender',
+        'sub_title':'Open Source Graphic and 3D printing tool',
+        'url':'#',
+        'icon':'static/ico/blender_128.jpg'
+    }
+    ]
+    return payload
 
 #----------------------------------------------------------------------------#
 # Launch.

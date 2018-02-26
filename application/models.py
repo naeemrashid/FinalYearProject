@@ -17,5 +17,12 @@ class User(Base):
         self.name = name
         self.password = password
 '''
+# class application(title,subtitle,url,ico):
+#     _title = title
+#     _subtitle = subtitle
+#     _ico = ico
+#     _url = url
+#     def add_application(self,application):
+#         self.application=application
 
 # Create tables.
