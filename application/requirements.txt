@@ -1,0 +1,8 @@
+Fabric
+Flask-WTF
+WTForms
+pymongo
+coverage
+# ecdsa
+# paramiko
+# pycrypto
