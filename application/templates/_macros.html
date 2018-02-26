@@ -1,0 +1,19 @@
+{% macro add_application(title,sub_title,url,icon) %}
+<div class="col-md-2 col-sm-4 col-xs-6">
+    <div class="stack-badge ">
+        <a class="icon" href={{ url }}>
+            <img hide_image="false" src={{ icon }}/>
+            <span style="display: none;">
+                Blog,CMS,MySQL,PHP,Varnish,Apache,wordpress
+            </span>
+            <span>
+                <!-- ribbon -->
+            </span>
+        </a>
+        <h5>
+            <a title={{ title }} href={{ url }}>{{ title }}</a>
+        </h5>
+        <span>{{ sub_title }}</span>
+    </div>
+</div>
+{% endmacro %}
