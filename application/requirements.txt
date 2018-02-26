@@ -1,7 +1,7 @@
 Fabric
 Flask-WTF
 WTForms
-pymongo
+flask_pymongo
 coverage
 # ecdsa
 # paramiko

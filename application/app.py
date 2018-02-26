@@ -2,12 +2,14 @@
 # Imports
 #----------------------------------------------------------------------------#
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 # from flask.ext.sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
 from forms import *
 import os
+from flask_pymongo import PyMongo
+
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -15,6 +17,7 @@ import os
 
 app = Flask(__name__)
 app.config.from_object('config')
+mongo = PyMongo(app)
 #db = SQLAlchemy(app)
 
 # Automatically tear down SQLAlchemy.
@@ -53,6 +56,16 @@ def about():
 def catalog():
     return render_template('pages/catalog.html')
 
+@app.route('/add')
+def add():
+    payload={
+        'title': 'eclipse',
+        'sub_title':'Java IDE by eclipse platform',
+        'url':'https://www.eclipse.com',
+        'icon':'https://upload.wikimedia.org/wikipedia/commons/b/bd/Eclipse_Faenza.svg'
+    }
+    mongo.db.catalog.insert_one(payload)
+    return "User inserted"
 @app.route('/login')
 def login():
     form = LoginForm(request.form)
@@ -67,6 +80,7 @@ def register():
 def forgot():
     form = ForgotForm(request.form)
     return render_template('forms/forgot.html', form=form)
+
 
 # Error handlers.
 
@@ -97,7 +111,7 @@ if not app.debug:
 
 # Default port:
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 
 # Or specify port manually:
 '''
