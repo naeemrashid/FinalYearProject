@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
 	qml-module-qtquick-layouts \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
-RUN RUN buildDeps=' \
+RUN buildDeps=' \
 		ca-certificates \
 		curl \
 	' \
