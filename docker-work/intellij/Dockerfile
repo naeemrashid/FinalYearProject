@@ -26,14 +26,14 @@ RUN mkdir -p /usr/share/man/man1/ \
 	openjdk-7-jdk \
 	&& rm -rf /var/lib/apt/lists/* 
 ENV VERSION=2017.3.4
-ENV IDEA_URL=https://download-cf.jetbrains.com/idea/ideaIU-${VERSION}.tar.gz
+ENV IDEA_URL=https://download.jetbrains.com/idea/ideaIU-${VERSION}.tar.gz
 RUN buildDeps=' \
 		ca-certificates \
 		curl \
 		tar \
 	' \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
-	&& curl -L ${IDEA_URL} > /tmp/intellij-idea.tgz \
+	&& curl -L ${IDEA_URL} > /tmp/intellij-idea.tar.gz \
 	&& tar -xzvf /tmp/intellij-idea.tar.gz -C /opt/ \
 	&& rm -rf /tmp/*.zip \
 	&& apt-get purge --auto-remove $buildDeps
