@@ -67,7 +67,7 @@ def add():
     # }
     payload=generate_payload()
     mongo.db.catalog.insert_many(payload)
-    return "User inserted"
+    return "<h1>User inserted</h1>"
 @app.route('/login')
 def login():
     form = LoginForm(request.form)
@@ -113,95 +113,163 @@ if not app.debug:
 def generate_payload():
     payload=[{
         'title': 'Eclipse',
-        'sub_title':'Java IDE by eclipse platform',
+        'sub_title':'Java IDE',
         'url':'#',
-        'icon':'static/ico/eclipse_128.png'
+        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
     },
     {
         'title': 'LibreOffice Writer',
-        'sub_title':'Open Source Document Editors',
+        'sub_title':'Document Editors',
         'url':'#',
-        'icon':'static/ico/libreoffice_writer_128.jpg'
+        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
     },
     {
         'title': 'LibreOffice Calculator',
-        'sub_title':'Open Source Office Suite for .csv files',
+        'sub_title':'Office Suite',
         'url':'#',
-        'icon':'static/ico/libreoffice_calc_128.jpg'
+        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
     },
     {
         'title': 'LibreOffice Draw',
-        'sub_title':'Open Source Drawing Tool',
-        'url':'#',
-        'icon':'static/ico/libreoffice_draw_128.png'
+        'sub_title':'Drawing Tool',
+        'url':'#', 
+        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
     },
     {
         'title': 'LibreOffice Impress',
-        'sub_title':'Open Source Document Presentation Editors/Maker',
+        'sub_title':'Presentation Editors/Maker',
         'url':'#',
-        'icon':'static/ico/libreoffice_present_128.png'
+        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
     },
     {
         'title': 'Pycharm Community Edition',
-        'sub_title':'Open Source IDE for Python Development',
+        'sub_title':'IDE for Python',
         'url':'#',
-        'icon':'static/ico/pycharm_128.png'
+        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
     },
     {
         'title': 'Intellij Idea Community Edition',
-        'sub_title':'Open Source IDE for java Development',
+        'sub_title':'IDE for java',
         'url':'#',
-        'icon':'static/ico/idea_128.png'
+        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
     },
     {
         'title': 'Scratch',
-        'sub_title':'Open Source Code Block Editor for Kids',
+        'sub_title':'Programming for Kids',
         'url':'#',
-        'icon':'static/ico/scratch_128.jpg'
+        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
     },
     {
         'title': 'VLC videolan Media Player',
-        'sub_title':'Open Source Media Player by videolan',
+        'sub_title':'Media Player',
         'url':'#',
-        'icon':'static/ico/vlc_128.jpg'
+        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
     },
     {
         'title': 'wireshark',
-        'sub_title':'Open Source Network Debugging Tool',
+        'sub_title':'Network Debugging Tool',
         'url':'#',
-        'icon':'static/ico/wireshark_128.png'
+        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
     },
     {
         'title': 'Inkspace',
-        'sub_title':'Open Source Image Editor',
+        'sub_title':'Image Editor',
         'url':'#',
-        'icon':'static/ico/inkspace_128.png'
+        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
+    }]
+    '''
+    payload=[{
+        'title': 'Eclipse',
+        'sub_title':'Java IDE',
+        'url':'#',
+        'icon':'static/ico/app-icons/arduino-icon.png'
+    },
+    {
+        'title': 'LibreOffice Writer',
+        'sub_title':'Document Editors',
+        'url':'#',
+        'icon':'static/ico/app-icons/blender-icon.png'
+    },
+    {
+        'title': 'LibreOffice Calculator',
+        'sub_title':'Office Suite',
+        'url':'#',
+        'icon':'static/ico/app-icons/eclipse-icon.png'
+    },
+    {
+        'title': 'LibreOffice Draw',
+        'sub_title':'Drawing Tool',
+        'url':'#', 
+        'icon':'static/ico/app-icons/firefox-logo.png'
+    },
+    {
+        'title': 'LibreOffice Impress',
+        'sub_title':'Presentation Editors/Maker',
+        'url':'#',
+        'icon':'static/ico/app-icons/gimp.png'
+    },
+    {
+        'title': 'Pycharm Community Edition',
+        'sub_title':'IDE for Python',
+        'url':'#',
+        'icon':'static/ico/app-icons/inkscape.png'
+    },
+    {
+        'title': 'Intellij Idea Community Edition',
+        'sub_title':'IDE for java',
+        'url':'#',
+        'icon':'static/ico/app-icons/intellij-icon.png'
+    },
+    {
+        'title': 'Scratch',
+        'sub_title':'Programming for Kids',
+        'url':'#',
+        'icon':'static/ico/app-icons/libreoffice_calc.png'
+    },
+    {
+        'title': 'VLC videolan Media Player',
+        'sub_title':'Media Player',
+        'url':'#',
+        'icon':'static/ico/app-icons/vlc.png'
+    },
+    {
+        'title': 'wireshark',
+        'sub_title':'Network Debugging Tool',
+        'url':'#',
+        'icon':'static/ico/app-icons/wireshark.png'
+    },
+    {
+        'title': 'Inkspace',
+        'sub_title':'Image Editor',
+        'url':'#',
+        'icon':'static/ico/app-icons/libreoffice_draw.png'
     },
     {
         'title': 'Gimp',
-        'sub_title':'Open Source Image Editor',
+        'sub_title':'Image Editor',
         'url':'#',
-        'icon':'static/ico/gimp_128.jpg'
+        'icon':'static/ico/app-icons/libreofficewirter.png'
     },
     {
         'title': 'Firefox',
-        'sub_title':'Open Source Browser',
+        'sub_title':'Browser',
         'url':'#',
-        'icon':'static/ico/firefox_128.jpg'
+        'icon':'static/ico/app-icons/pycharm-icon.png'
     },
     {
         'title': 'Arduino',
         'sub_title':'Electrical Stuff',
         'url':'#',
-        'icon':'static/ico/arduino_128.png'
+        'icon':'static/ico/app-icons/libreoffice_present.png'
     },
     {
-        'title': 'blender',
-        'sub_title':'Open Source Graphic and 3D printing tool',
+        'title': 'Blender',
+        'sub_title':'Graphic and 3D',
         'url':'#',
-        'icon':'static/ico/blender_128.jpg'
+        'icon':'static/ico/app-icons/scratch.png'
     }
     ]
+    '''
     return payload
 
 #----------------------------------------------------------------------------#
