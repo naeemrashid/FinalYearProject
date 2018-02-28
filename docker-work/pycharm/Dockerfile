@@ -23,8 +23,8 @@ RUN mkdir -p /usr/share/man/man1/ \
 	xdg-utils \
 	python \
 	&& rm -rf /var/lib/apt/lists/* 
-ENV VERSION=2017.2.1
-ENV PY_URL=https://download-cf.jetbrains.com/idea/pycharm-community-${VERSION}.tar.gz
+ENV VERSION=2017.3.3
+ENV PY_URL=download.jetbrains.com/python/pycharm-community-${VERSION}.tar.gz
 RUN buildDeps=' \
 		ca-certificates \
 		curl \
