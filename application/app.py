@@ -115,67 +115,67 @@ def generate_payload():
         'title': 'Eclipse',
         'sub_title':'Java IDE',
         'url':'#',
-        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
+        'icon':'static/ico/app-icons/eclipse.png'
     },
     {
         'title': 'LibreOffice Writer',
         'sub_title':'Document Editors',
         'url':'#',
-        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
+        'icon':'static/ico/app-icons/libreoffice_writer.png'
     },
     {
         'title': 'LibreOffice Calculator',
         'sub_title':'Office Suite',
         'url':'#',
-        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
+        'icon':'static/ico/app-icons/libreoffice_calc.png'
     },
     {
         'title': 'LibreOffice Draw',
         'sub_title':'Drawing Tool',
         'url':'#', 
-        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
+        'icon':'static/ico/app-icons/libreoffice_draw.png'
     },
     {
         'title': 'LibreOffice Impress',
         'sub_title':'Presentation Editors/Maker',
         'url':'#',
-        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
+        'icon':'static/ico/app-icons/libreoffice_present.png'
     },
     {
         'title': 'Pycharm Community Edition',
         'sub_title':'IDE for Python',
         'url':'#',
-        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
+        'icon':'static/ico/app-icons/pycharm.png'
     },
     {
         'title': 'Intellij Idea Community Edition',
         'sub_title':'IDE for java',
         'url':'#',
-        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
+        'icon':'static/ico/app-icons/intellij_idea.png'
     },
     {
         'title': 'Scratch',
         'sub_title':'Programming for Kids',
         'url':'#',
-        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
+        'icon':'static/ico/app-icons/scratch.png'
     },
     {
         'title': 'VLC videolan Media Player',
         'sub_title':'Media Player',
         'url':'#',
-        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
+        'icon':'static/ico/app-icons/vlc.png'
     },
     {
         'title': 'wireshark',
         'sub_title':'Network Debugging Tool',
         'url':'#',
-        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
+        'icon':'static/ico/app-icons/wireshark.png'
     },
     {
         'title': 'Inkspace',
         'sub_title':'Image Editor',
         'url':'#',
-        'icon':'static/ico/apple-touch-icon-114-precomposed.png'
+        'icon':'static/ico/app-icons/inkscape.png'
     }]
     '''
     payload=[{
