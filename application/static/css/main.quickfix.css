@@ -28,6 +28,9 @@
     color: #2c3e50;
     font-weight: 300;
 }
+element {
+  height: 341px;
+}
 .center-block {
     display: block;
     margin-left: auto;
@@ -47,6 +50,9 @@
 .all-spacer {
   padding: 5%;
 }
+.all-spacer-sm {
+  padding: 3%;
+}
 element {
   height: 124px;
 }
@@ -57,4 +63,7 @@ element {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+.bottom-spacer {
+  padding-bottom: 3%;
 }
