@@ -1,0 +1,69 @@
+
+/**
+ * @file
+ * Quickfix stylesheet file.
+ *
+ * Contains immediate fixes that should be revised later and added in the
+ * main.css.
+ */
+
+
+ .rounded-corner{
+    border-radius: 25px;
+    border: 2px solid #d3d3d3;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  .border-box{
+    border: 2px solid #d3d3d3;
+    padding: 10px;
+  }
+
+  /* from rancher labs */
+
+  body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    line-height: 1.42857;
+    color: #2c3e50;
+    font-weight: 300;
+}
+element {
+  height: 341px;
+}
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+  .rnchr-catalog-item-container {
+    border: 3px solid #e7e7e7;
+    background: #fff;
+    margin-bottom: 10%;
+}
+.rnchr-catalog-item-container .rnchr-catalog-item-img-div {
+  margin-bottom: 20px;
+}
+.text-center {
+  text-align: center;
+}
+.all-spacer {
+  padding: 5%;
+}
+.all-spacer-sm {
+  padding: 3%;
+}
+element {
+  height: 124px;
+}
+.bg-lightGrayTwo {
+  background-color: #ecf0f1;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.bottom-spacer {
+  padding-bottom: 3%;
+}

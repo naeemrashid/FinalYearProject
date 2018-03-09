@@ -1,0 +1,20 @@
+{% macro add_application(title,sub_title,url,icon) %}
+<div class="col-md-2 col-sm-6 col-xs-12 center-block" style="width: 273px;">
+    <div class="rnchr-catalog-item-container ">
+        <div class="rnchr-catalog-item-img-div all-spacer">
+            <a class="icon" href={{ url }}>
+                <img class="center-block all-spacer-sm" hide_image="false" src={{ icon }}/>
+            </a>
+        </div>
+        <div class="bg-lightGrayTwo rnchr-catalog-content-container" style="height: 124px;">
+        <div class="rnchr-catalog-content-div all-spacer">
+            <h4 class="text-center">
+                <a title={{ title }} href={{ url }}>{{ title }}</a>
+            </h4>
+            <p class="text-center">{{ sub_title }}</p>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endmacro %}

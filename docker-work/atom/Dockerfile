@@ -57,8 +57,7 @@ RUN buildDeps=' \
 	&& apt-get purge -y --auto-remove $buildDeps
 
 ENV HOME /home/atom
-RUN useradd --create-home --home-dir $HOME atom \
-        && chown -R atom:atom $HOME
+RUN mkdir -p ${HOME} && useradd -m -d ${HOME}  atom
 USER atom
 WORKDIR atom
 

@@ -1,0 +1,1 @@
+https://www.arduino.cc/download.php?f=/arduino-nightly-linux64.tar.xz

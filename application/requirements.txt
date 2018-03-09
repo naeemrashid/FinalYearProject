@@ -1,0 +1,6 @@
+Fabric
+Flask-WTF
+WTForms
+flask_pymongo
+coverage
+kubernetes

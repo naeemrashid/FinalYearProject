@@ -1,0 +1,10 @@
+version: '3.0'
+services:
+ arduino:
+  build: .
+  container_name: arduino
+  volumes:
+   - /tmp/.X11-unix:/tmp/.X11-unix
+   - /containers/arduino:/home/root
+  environment:
+   - DISPLAY=unix$DISPLAY
