@@ -3,6 +3,4 @@ Flask-WTF
 WTForms
 flask_pymongo
 coverage
-# ecdsa
-# paramiko
-# pycrypto
+kubernetes
