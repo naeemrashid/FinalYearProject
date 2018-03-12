@@ -82,8 +82,10 @@ def register():
 def forgot():
     form = ForgotForm(request.form)
     return render_template('forms/forgot.html', form=form)
-
-
+@app.route('/add_app')
+def add_app():
+    # form = form = RegisterForm(request.form)
+    return render_template('forms/add.html')
 # Error handlers.
 
 
@@ -112,6 +114,18 @@ if not app.debug:
 
 def generate_payload():
     payload=[{
+            'title': 'mongodb-org',
+            'sub_title': 'Mongodb Database for Applications',
+            'url': '#',
+            'icon': 'static/ico/app-icons/mongodb.png'
+    },
+    {
+            'title': 'jupyterhub',
+            'sub_title': 'Jupyterhub notebooks for python development',
+            'url': '#',
+            'icon': 'static/ico/app-icons/jupyterhub-copy.png'
+    },
+    {
         'title': 'Eclipse',
         'sub_title':'Java IDE',
         'url':'#',
@@ -176,7 +190,15 @@ def generate_payload():
         'sub_title':'Image Editor',
         'url':'#',
         'icon':'static/ico/app-icons/inkscape.png'
-    }]
+    },
+    {
+            'title': 'mysql',
+            'sub_title': 'MySql Database for Applications',
+            'url': '#',
+            'icon': 'static/ico/app-icons/logo-mysql-170x115.png'
+    }
+
+    ]
     '''
     payload=[{
         'title': 'Eclipse',
