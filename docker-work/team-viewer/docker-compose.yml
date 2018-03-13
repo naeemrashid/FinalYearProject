@@ -1,0 +1,11 @@
+version: '3.0'
+services:
+ teamviewer:
+  build: .
+  container_name: teamviewer
+  volumes:
+   - /etc/localtime:/etc/localtime
+   - /tmp/.X11-unix:/tmp/.X11-unix
+   - /containers/teamviewer:/home/root
+  environment:
+   - DISPLAY=$DISPLAY
