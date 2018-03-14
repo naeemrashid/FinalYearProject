@@ -1,24 +1,53 @@
 {% extends 'layouts/main.html' %}
-{% block title %}Applications Catalog{% endblock %}
+{% block title %}Home{% endblock %}
 {% block content %}
-
-<div class="page-header">
-    <h1>This section includes details of the application selected by user and diffrent install methods etc.
-        <code>docker</code> and
-        <code>docker-compose</code>
-    </h1>
+<div class="jumbotron">
+  <h1 class="display-4">Simple. Elegant. Awesome</h1>
+  <p class="lead">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ Proin luctus nulla velit, a rutrum lectus tincidunt scelerisque.
+ Duis eget gravida mi. Nunc semper maximus pharetra. Pellentesque ornare semper nulla, a efficitur sem facilisis sed.
+ Mauris scelerisque massa sed arcu ullamcorper, et pellentesque ipsum imperdiet.
+ Duis consectetur tempor sodales.
+ Sed ultricies metus quis augue pellentesque, sit amet aliquam magna rhoncus.
+ Etiam lobortis volutpat risus, a faucibus eros hendrerit at. Nulla ut quam efficitur, efficitur neque in, consectetur sapien.
+ Vestibulum posuere est odio, a maximus sapien bibendum id. Proin ipsum magna, sagittis vitae tortor egestas, suscipit blandit dui.
+ Vestibulum ut neque dignissim, fermentum ex quis, semper massa.
+  </p>
+  <p class="lead">
+    <button class="btn btn-primary btn-lg">Learn More</button>
+  </p>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-sm-12 col-md-push-8">
-            <aside>
-                <div>
-                    
-                </div>
-            </aside>
-
+<div class="row mt-sm-4 mt-md-0">
+    <div class="col-sm-12 col-md-8 text-sm-center text-md-left">
+        <h3 >Here comes a Heading</h3>
+        <p class="lead">
+             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             Proin luctus nulla velit, a rutrum lectus tincidunt scelerisque.
+             Duis eget gravida mi. Nunc semper maximus pharetra. Pellentesque ornare semper nulla, a efficitur sem facilisis sed.
+             Mauris scelerisque massa sed arcu ullamcorper, et pellentesque ipsum imperdiet.
+             Duis consectetur tempor sodales.
+        </p>
+        <p class="lead">
+             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             Proin luctus nulla velit, a rutrum lectus tincidunt scelerisque.
+             Duis eget gravida mi. Nunc semper maximus pharetra. Pellentesque ornare semper nulla, a efficitur sem facilisis sed.
+             Mauris scelerisque massa sed arcu ullamcorper, et pellentesque ipsum imperdiet.
+             Duis consectetur tempor sodales.
+        </p>
+    </div>
+    <div class="col-sm-12 col-md-4">
+        <h3 class="mb-4">How to use</h3>
+        <div class="list-group">
+                <a class="list-group-item active" href="#">Launch In the Cloud</a>
+                <a class="list-group-item" href="#">Install Using Docker Compose </a>
         </div>
     </div>
+
 </div>
+<!--<div class="page-header">-->
+  <!--<h1>Sticky footer with fixed navbar</h1>-->
+<!--</div>-->
+<!--<p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added within <code>#wrap</code> with <code>padding-top: 60px;</code> on the <code>.container</code>.</p>-->
 
 {% endblock %}

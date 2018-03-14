@@ -2,12 +2,19 @@
 {% block title %}Applications Catalog{% endblock %}
 {% block content %}
 
-<div class="page-header">
-    <h1>A list of pre-packaged and configured applications with
-        <code>docker</code> and
-        <code>docker-compose</code>
-    </h1>
+<div class="jumbotron">
+  <div class="container" style="position:relative">
+    <div class="row">
+      <div class="col-xs-12 jumbotron-heading">
+        <h1>Packaged and Configured Applications For Desktops and Educational Cloud.</h1>
+      </div>
+      <div class="col-xs-12 jumbotron-bottom">
+        <h2><a href="https://rancher.com/support"><i class="fa fa-question"></i> Request Support </a></h2>
+      </div>
+    </div>
+  </div>
 </div>
+
 <div class="col-md-10 col-sm-8 col-xs-12 col-sm-offset-1">
     <div class="row center-block">
         {% from "_macros.html" import add_application %}
