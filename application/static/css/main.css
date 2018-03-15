@@ -182,3 +182,7 @@ a {
     color: #D5D5D5;
     text-decoration: none;
 }
+/* list group items margin*/
+.list-group .list-group-item {
+    margin: 2% 0 2% 0;
+}
