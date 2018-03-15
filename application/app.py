@@ -57,6 +57,9 @@ def catalog():
     application_catalog = mongo.db.catalog.find()
     return render_template('pages/catalog.html',application_catalog=application_catalog)
 
+@app.route('/catalog/<name>/details')
+def details(name=None):
+    return  render_template('pages/detail.html')
 @app.route('/add')
 def add():
     # payload={
@@ -86,6 +89,7 @@ def forgot():
 def add_app():
     # form = form = RegisterForm(request.form)
     return render_template('forms/add.html')
+
 # Error handlers.
 
 

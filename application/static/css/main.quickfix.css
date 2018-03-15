@@ -27,9 +27,6 @@
     line-height: 1.42857;
     font-weight: 300;
 }
-element {
-  height: 341px;
-}
 .center-block {
     display: block;
     margin-left: auto;
@@ -51,9 +48,6 @@ element {
 }
 .all-spacer-sm {
   padding: 3%;
-}
-element {
-  height: 124px;
 }
 .bg-lightGrayTwo {
   background-color: #ecf0f1;

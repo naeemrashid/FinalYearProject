@@ -76,7 +76,15 @@
       </div>
     </div>
 
-    {% block landing %}{% endblock %}
+    {% block landing %}
+    <div class="banner">
+      <div class="landing-text">
+          <h1>Educational Cloud Appstore</h1>
+          <h3>Pre-configured and Ready to Launch Applications with Docker and Kubernetes</h3>
+          <a href="#" class="btn btn-default btn-lg">Learn More</a>
+      </div>
+  </div>
+    {% endblock %}
     <!-- Begin page content -->
     <main id="content" role="main" class="container">
 
@@ -90,7 +98,6 @@
           {% endfor %}
         {% endif %}
       {% endwith %}
-
       {% block content %}{% endblock %}
       
     </main>
@@ -100,7 +107,28 @@
   <div id="footer">
     <div class="container">
       <p>Numal College Minawali &copy; All Rights Reserved.</p>
-      {% block footer %}{% endblock %}
+      {% block footer %}
+      <div class="container-fluid text-center">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Contact Us</h3>
+            <br>
+            <h4>Address and contact info</h4>
+
+        </div>
+        <div class="col-sm-4">
+            <h3>Spread The Word</h3>
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-youtube"></a>
+
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+</div>
+      {% endblock %}
     </div>
   </div>
 
