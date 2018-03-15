@@ -9,8 +9,6 @@ RUN apt-get update && apt-get install -y \
     libgomp1 \
     libpython2.7 \
     libstdc++6 \
-    libglib2.0-0 \
-    libgtk2.0-0 \
     kicad \
     kicad-doc-en \
     --no-install-recommends \

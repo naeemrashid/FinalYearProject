@@ -1,0 +1,10 @@
+version: '3.0'
+services:
+ kicad:
+  build: .
+  container_name: kicad
+  volumes:
+   - /tmp/.X11-unix:/tmp/.X11-unix
+   - /home/$USER/containers/kicad:/home/root/
+  environment:
+   - DISPLAY=unix$DISPLAY
