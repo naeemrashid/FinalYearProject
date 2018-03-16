@@ -173,16 +173,19 @@ a {
     padding: 5% 5% 10% 5%;
     color: #FFF;
 }
-.fa{
+#footer .fa{
     padding: 15px;
     font-size: 25px;
     color: #FFF;
 }
-.fa:hover{
+#footer .fa:hover{
     color: #D5D5D5;
     text-decoration: none;
 }
 /* list group items margin*/
 .list-group .list-group-item {
     margin: 2% 0 2% 0;
+}
+.search-bar{
+    padding: 4% 0 2% 0;
 }
