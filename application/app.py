@@ -59,7 +59,24 @@ def catalog():
 
 @app.route('/catalog/<name>/details')
 def details(name=None):
-    return  render_template('pages/detail.html')
+    # get data for this application
+    app = {'title':'Sample Application',
+           'subtitle':'A short Description of Application',
+           'description':'''A little paragraph which will tell the description
+            of this application. How to use this application and 
+            what is it meant for''',
+           'service_name':'sample-kubeapp_service',
+           'download_url':'https://github.com/sample/sample-compose.html',
+           'app_url':'https://location/to/application/url.html',
+           'icon':'path/to/appplicaton/icon.png'
+           }
+    return  render_template('pages/detail.html',app=app)
+@app.route('/catalog/<name>/launch')
+def launch_kube():
+    return
+@app.route('/catalog/<name>/download')
+def docker_download():
+    return
 @app.route('/add')
 def add():
     # payload={
