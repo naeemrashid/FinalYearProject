@@ -72,7 +72,7 @@ def details(name=None):
            }
     return  render_template('pages/detail.html',app=app)
 @app.route('/catalog/<name>/launch')
-def launch_kube():
+def launch_kubeapp():
     return
 @app.route('/catalog/<name>/download')
 def docker_download():
@@ -134,23 +134,13 @@ if not app.debug:
 #----------------------------------------------------------------------------#
 
 def generate_payload():
-    payload=[{
-            'title': 'mongodb-org',
-            'sub_title': 'Mongodb Database for Applications',
-            'url': '#',
-            'icon': 'static/ico/app-icons/mongodb.png'
-    },
-    {
-            'title': 'jupyterhub',
-            'sub_title': 'Jupyterhub notebooks for python development',
-            'url': '#',
-            'icon': 'static/ico/app-icons/jupyterhub-copy.png'
-    },
+    payload=[
+
     {
         'title': 'Eclipse',
         'sub_title':'Java IDE',
         'url':'#',
-        'icon':'static/ico/app-icons/eclipse.png'
+        'icon':'static/ico/app-icons/eclipse-test.png'
     },
     {
         'title': 'LibreOffice Writer',
@@ -217,6 +207,19 @@ def generate_payload():
             'sub_title': 'MySql Database for Applications',
             'url': '#',
             'icon': 'static/ico/app-icons/logo-mysql-170x115.png'
+    },
+
+    {
+                'title': 'mongodb-org',
+                'sub_title': 'Mongodb Database',
+                'url': '#',
+                'icon': 'static/ico/app-icons/mongodb.png'
+    },
+    {
+                'title': 'jupyterhub',
+                'sub_title': 'Jupyterhub notebooks',
+                'url': '#',
+                'icon': 'static/ico/app-icons/jupyterhub.png'
     }
 
     ]

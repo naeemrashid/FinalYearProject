@@ -38,13 +38,21 @@
     margin-bottom: 10%;
 }
 .rnchr-catalog-item-container .rnchr-catalog-item-img-div {
-  margin-bottom: 20px;
+margin-bottom: 20px;
 }
 .text-center {
   text-align: center;
 }
+.rnchr-catalog-content-div p{
+    font-size: 1em;
+    font-weight: 300;
+}
 .all-spacer {
   padding: 5%;
+}
+.all-spacer img{
+height:75px;
+padding: 3%;
 }
 .all-spacer-sm {
   padding: 3%;
