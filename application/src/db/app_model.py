@@ -15,3 +15,7 @@ class App:
                 'download_url':self._download_url,
                 'service':self._service,
                 'app_url':self._app_url}
+    def get_service_name(self):
+        return self._service
+    def get_title(self):
+        return self._title

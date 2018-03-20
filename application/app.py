@@ -9,6 +9,7 @@ from logging import Formatter, FileHandler
 from forms import *
 import os
 from flask_pymongo import PyMongo
+from src.db import app_model
 
 
 #----------------------------------------------------------------------------#
@@ -135,7 +136,6 @@ if not app.debug:
 
 def generate_payload():
     payload=[
-
     {
         'title': 'Eclipse',
         'sub_title':'Java IDE',
@@ -223,99 +223,6 @@ def generate_payload():
     }
 
     ]
-    '''
-    payload=[{
-        'title': 'Eclipse',
-        'sub_title':'Java IDE',
-        'url':'#',
-        'icon':'static/ico/app-icons/arduino-icon.png'
-    },
-    {
-        'title': 'LibreOffice Writer',
-        'sub_title':'Document Editors',
-        'url':'#',
-        'icon':'static/ico/app-icons/blender-icon.png'
-    },
-    {
-        'title': 'LibreOffice Calculator',
-        'sub_title':'Office Suite',
-        'url':'#',
-        'icon':'static/ico/app-icons/eclipse-icon.png'
-    },
-    {
-        'title': 'LibreOffice Draw',
-        'sub_title':'Drawing Tool',
-        'url':'#', 
-        'icon':'static/ico/app-icons/firefox-logo.png'
-    },
-    {
-        'title': 'LibreOffice Impress',
-        'sub_title':'Presentation Editors/Maker',
-        'url':'#',
-        'icon':'static/ico/app-icons/gimp.png'
-    },
-    {
-        'title': 'Pycharm Community Edition',
-        'sub_title':'IDE for Python',
-        'url':'#',
-        'icon':'static/ico/app-icons/inkscape.png'
-    },
-    {
-        'title': 'Intellij Idea Community Edition',
-        'sub_title':'IDE for java',
-        'url':'#',
-        'icon':'static/ico/app-icons/intellij-icon.png'
-    },
-    {
-        'title': 'Scratch',
-        'sub_title':'Programming for Kids',
-        'url':'#',
-        'icon':'static/ico/app-icons/libreoffice_calc.png'
-    },
-    {
-        'title': 'VLC videolan Media Player',
-        'sub_title':'Media Player',
-        'url':'#',
-        'icon':'static/ico/app-icons/vlc.png'
-    },
-    {
-        'title': 'wireshark',
-        'sub_title':'Network Debugging Tool',
-        'url':'#',
-        'icon':'static/ico/app-icons/wireshark.png'
-    },
-    {
-        'title': 'Inkspace',
-        'sub_title':'Image Editor',
-        'url':'#',
-        'icon':'static/ico/app-icons/libreoffice_draw.png'
-    },
-    {
-        'title': 'Gimp',
-        'sub_title':'Image Editor',
-        'url':'#',
-        'icon':'static/ico/app-icons/libreofficewirter.png'
-    },
-    {
-        'title': 'Firefox',
-        'sub_title':'Browser',
-        'url':'#',
-        'icon':'static/ico/app-icons/pycharm-icon.png'
-    },
-    {
-        'title': 'Arduino',
-        'sub_title':'Electrical Stuff',
-        'url':'#',
-        'icon':'static/ico/app-icons/libreoffice_present.png'
-    },
-    {
-        'title': 'Blender',
-        'sub_title':'Graphic and 3D',
-        'url':'#',
-        'icon':'static/ico/app-icons/scratch.png'
-    }
-    ]
-    '''
     return payload
 
 #----------------------------------------------------------------------------#
