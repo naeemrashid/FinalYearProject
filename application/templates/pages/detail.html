@@ -1,24 +1,44 @@
 {% extends 'layouts/main.html' %}
-{% block title %}Applications Catalog{% endblock %}
+{% block title %}Home{% endblock %}
 {% block content %}
-
-<div class="page-header">
-    <h1>This section includes details of the application selected by user and diffrent install methods etc.
-        <code>docker</code> and
-        <code>docker-compose</code>
-    </h1>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-sm-12 col-md-push-8">
-            <aside>
-                <div>
-                    
-                </div>
-            </aside>
+<div class="row mt-sm-4 mt-md-0">
+    <div class="col-sm-12 col-md-8">
+        <div class="row">
+            <img src="/static/ico/app-icons/vlc.png" class="img-responsive pull-left">
+            <h3>VLC media Player</h3><br>
+            <h4>This shit can play videos :) </h4>
 
         </div>
+        <h3 >Here comes a Heading</h3>
+        <p class="lead">
+             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             Proin luctus nulla velit, a rutrum lectus tincidunt scelerisque.
+             Duis eget gravida mi. Nunc semper maximus pharetra. Pellentesque ornare semper nulla, a efficitur sem facilisis sed.
+             Mauris scelerisque massa sed arcu ullamcorper, et pellentesque ipsum imperdiet.
+             Duis consectetur tempor sodales.
+        </p>
+        <p class="lead">
+             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             Proin luctus nulla velit, a rutrum lectus tincidunt scelerisque.
+             Duis eget gravida mi. Nunc semper maximus pharetra. Pellentesque ornare semper nulla, a efficitur sem facilisis sed.
+             Mauris scelerisque massa sed arcu ullamcorper, et pellentesque ipsum imperdiet.
+             Duis consectetur tempor sodales.
+        </p>
     </div>
+    <div class="col-sm-12 col-md-4">
+        <h3 class="mb-4">Here we Go...</h3>
+        <div class="list-group">
+                <a class="list-group-item active" href="#">Launch In the Cloud</a>
+                <a class="list-group-item list-group-item-success" href="#">Install Using Docker Compose </a>
+        </div>
+
+
+    </div>
+
 </div>
+<!--<div class="page-header">-->
+  <!--<h1>Sticky footer with fixed navbar</h1>-->
+<!--</div>-->
+<!--<p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added within <code>#wrap</code> with <code>padding-top: 60px;</code> on the <code>.container</code>.</p>-->
 
 {% endblock %}

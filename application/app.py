@@ -9,6 +9,7 @@ from logging import Formatter, FileHandler
 from forms import *
 import os
 from flask_pymongo import PyMongo
+from src.db import app_model
 
 
 #----------------------------------------------------------------------------#
@@ -46,7 +47,7 @@ def login_required(test):
 
 @app.route('/')
 def home():
-    return render_template('pages/placeholder.home.html')
+    return render_template('pages/home.html')
 
 
 @app.route('/about')
@@ -57,6 +58,26 @@ def catalog():
     application_catalog = mongo.db.catalog.find()
     return render_template('pages/catalog.html',application_catalog=application_catalog)
 
+@app.route('/catalog/<name>/details')
+def details(name=None):
+    # get data for this application
+    app = {'title':'Sample Application',
+           'subtitle':'A short Description of Application',
+           'description':'''A little paragraph which will tell the description
+            of this application. How to use this application and 
+            what is it meant for''',
+           'service_name':'sample-kubeapp_service',
+           'download_url':'https://github.com/sample/sample-compose.html',
+           'app_url':'https://location/to/application/url.html',
+           'icon':'path/to/appplicaton/icon.png'
+           }
+    return  render_template('pages/detail.html',app=app)
+@app.route('/catalog/<name>/launch')
+def launch_kubeapp():
+    return
+@app.route('/catalog/<name>/download')
+def docker_download():
+    return
 @app.route('/add')
 def add():
     # payload={
@@ -86,6 +107,7 @@ def forgot():
 def add_app():
     # form = form = RegisterForm(request.form)
     return render_template('forms/add.html')
+
 # Error handlers.
 
 
@@ -113,23 +135,12 @@ if not app.debug:
 #----------------------------------------------------------------------------#
 
 def generate_payload():
-    payload=[{
-            'title': 'mongodb-org',
-            'sub_title': 'Mongodb Database for Applications',
-            'url': '#',
-            'icon': 'static/ico/app-icons/mongodb.png'
-    },
-    {
-            'title': 'jupyterhub',
-            'sub_title': 'Jupyterhub notebooks for python development',
-            'url': '#',
-            'icon': 'static/ico/app-icons/jupyterhub-copy.png'
-    },
+    payload=[
     {
         'title': 'Eclipse',
         'sub_title':'Java IDE',
         'url':'#',
-        'icon':'static/ico/app-icons/eclipse.png'
+        'icon':'static/ico/app-icons/eclipse-test.png'
     },
     {
         'title': 'LibreOffice Writer',
@@ -196,102 +207,22 @@ def generate_payload():
             'sub_title': 'MySql Database for Applications',
             'url': '#',
             'icon': 'static/ico/app-icons/logo-mysql-170x115.png'
+    },
+
+    {
+                'title': 'mongodb-org',
+                'sub_title': 'Mongodb Database',
+                'url': '#',
+                'icon': 'static/ico/app-icons/mongodb.png'
+    },
+    {
+                'title': 'jupyterhub',
+                'sub_title': 'Jupyterhub notebooks',
+                'url': '#',
+                'icon': 'static/ico/app-icons/jupyterhub.png'
     }
 
     ]
-    '''
-    payload=[{
-        'title': 'Eclipse',
-        'sub_title':'Java IDE',
-        'url':'#',
-        'icon':'static/ico/app-icons/arduino-icon.png'
-    },
-    {
-        'title': 'LibreOffice Writer',
-        'sub_title':'Document Editors',
-        'url':'#',
-        'icon':'static/ico/app-icons/blender-icon.png'
-    },
-    {
-        'title': 'LibreOffice Calculator',
-        'sub_title':'Office Suite',
-        'url':'#',
-        'icon':'static/ico/app-icons/eclipse-icon.png'
-    },
-    {
-        'title': 'LibreOffice Draw',
-        'sub_title':'Drawing Tool',
-        'url':'#', 
-        'icon':'static/ico/app-icons/firefox-logo.png'
-    },
-    {
-        'title': 'LibreOffice Impress',
-        'sub_title':'Presentation Editors/Maker',
-        'url':'#',
-        'icon':'static/ico/app-icons/gimp.png'
-    },
-    {
-        'title': 'Pycharm Community Edition',
-        'sub_title':'IDE for Python',
-        'url':'#',
-        'icon':'static/ico/app-icons/inkscape.png'
-    },
-    {
-        'title': 'Intellij Idea Community Edition',
-        'sub_title':'IDE for java',
-        'url':'#',
-        'icon':'static/ico/app-icons/intellij-icon.png'
-    },
-    {
-        'title': 'Scratch',
-        'sub_title':'Programming for Kids',
-        'url':'#',
-        'icon':'static/ico/app-icons/libreoffice_calc.png'
-    },
-    {
-        'title': 'VLC videolan Media Player',
-        'sub_title':'Media Player',
-        'url':'#',
-        'icon':'static/ico/app-icons/vlc.png'
-    },
-    {
-        'title': 'wireshark',
-        'sub_title':'Network Debugging Tool',
-        'url':'#',
-        'icon':'static/ico/app-icons/wireshark.png'
-    },
-    {
-        'title': 'Inkspace',
-        'sub_title':'Image Editor',
-        'url':'#',
-        'icon':'static/ico/app-icons/libreoffice_draw.png'
-    },
-    {
-        'title': 'Gimp',
-        'sub_title':'Image Editor',
-        'url':'#',
-        'icon':'static/ico/app-icons/libreofficewirter.png'
-    },
-    {
-        'title': 'Firefox',
-        'sub_title':'Browser',
-        'url':'#',
-        'icon':'static/ico/app-icons/pycharm-icon.png'
-    },
-    {
-        'title': 'Arduino',
-        'sub_title':'Electrical Stuff',
-        'url':'#',
-        'icon':'static/ico/app-icons/libreoffice_present.png'
-    },
-    {
-        'title': 'Blender',
-        'sub_title':'Graphic and 3D',
-        'url':'#',
-        'icon':'static/ico/app-icons/scratch.png'
-    }
-    ]
-    '''
     return payload
 
 #----------------------------------------------------------------------------#
