@@ -82,7 +82,7 @@ def register():
 def forgot():
     form = ForgotForm(request.form)
     return render_template('forms/forgot.html', form=form)
-@app.route('/add_app')
+@app.route('/catalog/add_app')
 def add_app():
     # form = form = RegisterForm(request.form)
     return render_template('forms/add.html')
