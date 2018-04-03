@@ -4,4 +4,4 @@ WTForms
 flask_pymongo
 coverage
 kubernetes
-flask-login=0.4.1
+flask-login==0.4.1

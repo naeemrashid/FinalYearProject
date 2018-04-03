@@ -2,13 +2,12 @@
 # Imports
 #----------------------------------------------------------------------------#
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash,session
 import logging
 from logging import Formatter, FileHandler
 from forms import *
 from flask_pymongo import PyMongo
-import flask_login
-
+from src.database import user_model
 #----------------------------------------------------------------------------#
 # App Config.
 #----------------------------------------------------------------------------#
@@ -17,8 +16,6 @@ app = Flask(__name__)
 app.config.from_object('config')
 app.secret_key = 'super secret string'
 mongo = PyMongo(app)
-login_manager =  flask_login.LoginManager()
-login_manager.init_app(app)
 #db = SQLAlchemy(app)
 
 # Automatically tear down SQLAlchemy.
@@ -43,8 +40,6 @@ def login_required(test):
 #----------------------------------------------------------------------------#
 # Controllers.
 #----------------------------------------------------------------------------#
-
-
 @app.route('/')
 def home():
     return render_template('pages/home.html')
@@ -219,33 +214,50 @@ def generate_payload():
     return payload
 
 
-
-@app.route('/register')
+@app.route('/register', methods=['POST', 'GET'])
 def register():
-    form = RegisterForm(request.form)
-    return render_template('forms/register.html', form=form)
+    users = mongo.db.users
+    if request.method == 'POST':
+        existing_user = users.find_one({'name': request.form['username']})
+        if existing_user is None:
+            password = request.form['password']
+            users.insert({'name': request.form['username'], 'password': password})
+            session['username'] = request.form['username']
+            return redirect(url_for('home'))
+        flash ('User already exist head towards login')
+            # return 'That username already exists!'
+    return render_template('forms/register.html')
+
+@app.route('/login',methods = ['GET','POST'])
+def login():
+    users = mongo.db.users
+    if request.method == 'POST':
+        user = users.find_one ({'name': request.form['username']})
+        if user:
+            if  (request.form['password'] == user['password']):
+                    session['username'] = request.form['username']
+                    return redirect(url_for('protected'))
+            # return 'Invalid username/password combination'
+        if (not user) or ((request.form['pass'] != user['password'])):
+            flash("Invalid Username/Password",category="error")
+    return render_template('forms/login.html')
+
 @app.route('/forgot')
 def forgot():
     form = ForgotForm(request.form)
     return render_template('forms/forgot.html', form=form)
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm(request.form)
-    if request.method == 'POST' and form.validate():
-        return 'Deal With Posts'
-    return  render_template('forms/login.html', form=form)
-@app.route('/protected')
-@flask_login.login_required
-def protected():
-    return 'Logged in as: ' + flask_login.current_user.id
 
 @app.route('/logout')
 def logout():
-    flask_login.logout_user()
+    session.pop('username',None)
     return 'Logged out'
-@login_manager.unauthorized_handler
-def unauthorized_handler():
-    return 'Unauthorized'
+@app.route('/protected')
+# @flask_login.login_required
+def protected():
+    if 'username' in session:
+        return 'Logged in as: '+ session['username']
+    return 'No Session Found'
+
 #----------------------------------------------------------------------------#
 # Launch.
 #----------------------------------------------------------------------------#
