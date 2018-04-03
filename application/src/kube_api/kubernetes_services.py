@@ -10,7 +10,6 @@ for i in v1.list_node(watch=False).items:
         print("%s\t%s" % (i.type, i.address))
         if i.type=="InternalIP":
             minikube_address=i.address
-
 def access_node_service(service_name):
     for service in list_services.items:
         if(service.metadata.name==service_name and service.spec.type=="NodePort"):

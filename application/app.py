@@ -3,14 +3,11 @@
 #----------------------------------------------------------------------------#
 
 from flask import Flask, render_template, request, redirect, url_for
-# from flask.ext.sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
 from forms import *
-import os
 from flask_pymongo import PyMongo
-from src.db import app_model
-
+import flask_login
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -18,7 +15,10 @@ from src.db import app_model
 
 app = Flask(__name__)
 app.config.from_object('config')
+app.secret_key = 'super secret string'
 mongo = PyMongo(app)
+login_manager =  flask_login.LoginManager()
+login_manager.init_app(app)
 #db = SQLAlchemy(app)
 
 # Automatically tear down SQLAlchemy.
@@ -89,20 +89,13 @@ def add():
     payload=generate_payload()
     mongo.db.catalog.insert_many(payload)
     return "<h1>User inserted</h1>"
-@app.route('/login')
-def login():
-    form = LoginForm(request.form)
-    return render_template('forms/login.html', form=form)
+# @app.route('/login')
+# def login():
+#     form = LoginForm(request.form)
+#     return render_template('forms/login.html', form=form)
 
 
-@app.route('/register')
-def register():
-    form = RegisterForm(request.form)
-    return render_template('forms/register.html', form=form)
-@app.route('/forgot')
-def forgot():
-    form = ForgotForm(request.form)
-    return render_template('forms/forgot.html', form=form)
+
 @app.route('/catalog/add_app')
 def add_app():
     # form = form = RegisterForm(request.form)
@@ -225,9 +218,39 @@ def generate_payload():
     ]
     return payload
 
+
+
+@app.route('/register')
+def register():
+    form = RegisterForm(request.form)
+    return render_template('forms/register.html', form=form)
+@app.route('/forgot')
+def forgot():
+    form = ForgotForm(request.form)
+    return render_template('forms/forgot.html', form=form)
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm(request.form)
+    if request.method == 'POST' and form.validate():
+        return 'Deal With Posts'
+    return  render_template('forms/login.html', form=form)
+@app.route('/protected')
+@flask_login.login_required
+def protected():
+    return 'Logged in as: ' + flask_login.current_user.id
+
+@app.route('/logout')
+def logout():
+    flask_login.logout_user()
+    return 'Logged out'
+@login_manager.unauthorized_handler
+def unauthorized_handler():
+    return 'Unauthorized'
 #----------------------------------------------------------------------------#
 # Launch.
 #----------------------------------------------------------------------------#
+
+
 
 # Default port:
 if __name__ == '__main__':

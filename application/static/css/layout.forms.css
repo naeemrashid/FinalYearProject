@@ -29,7 +29,7 @@ body {
 }
 .form-only-page .form input[type="text"],
 .form-only-page .form input[type="password"] {
-  margin-bottom: -1px;
+  margin-bottom: 2%;
   border-radius: 0;
 }
 .form-only-page .form input.first-input {
