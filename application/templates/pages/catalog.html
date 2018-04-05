@@ -31,7 +31,7 @@
     <div class="row center-block">
         {% from "_macros.html" import add_application %}
         {% for application in application_catalog %}
-        {{ add_application(application.title ,application.sub_title,application.url,application.icon) }}
+        {{ add_application(application.name, application.title ,application.sub_title,application.url,application.icon) }}
         {% endfor %}
     </div>
 

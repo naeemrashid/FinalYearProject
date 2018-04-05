@@ -13,9 +13,12 @@ from src.database import user_model
 #----------------------------------------------------------------------------#
 
 app = Flask(__name__)
-app.config.from_object('config')
+app.config['MONGO_HOST']='127.0.0.1'
+app.config['MONGO_PORT']='27017'
+app.config['MONGO_DBNAME']='app_db'
+
 app.secret_key = 'super secret string'
-mongo = PyMongo(app)
+mongo = PyMongo(app,config_prefix='MONGO')
 #db = SQLAlchemy(app)
 
 # Automatically tear down SQLAlchemy.
@@ -54,7 +57,7 @@ def catalog():
     return render_template('pages/catalog.html',application_catalog=application_catalog)
 
 @app.route('/catalog/<name>/details')
-def details(name=None):
+def details(name):
     # get data for this application
     app = {'title':'Sample Application',
            'subtitle':'A short Description of Application',
@@ -125,89 +128,103 @@ if not app.debug:
 def generate_payload():
     payload=[
     {
+        'name':'eclipse',
         'title': 'Eclipse',
         'sub_title':'Java IDE',
         'url':'#',
         'icon':'static/ico/app-icons/eclipse-test.png'
     },
     {
+        'name': 'libre_office',
         'title': 'LibreOffice Writer',
         'sub_title':'Document Editors',
         'url':'#',
         'icon':'static/ico/app-icons/libreoffice_writer.png'
     },
     {
+        'name': 'libre_office',
         'title': 'LibreOffice Calculator',
         'sub_title':'Office Suite',
         'url':'#',
         'icon':'static/ico/app-icons/libreoffice_calc.png'
     },
     {
+        'name': 'libre_office',
         'title': 'LibreOffice Draw',
         'sub_title':'Drawing Tool',
         'url':'#', 
         'icon':'static/ico/app-icons/libreoffice_draw.png'
     },
     {
+        'name': 'libre_office',
         'title': 'LibreOffice Impress',
         'sub_title':'Presentation Editors/Maker',
         'url':'#',
         'icon':'static/ico/app-icons/libreoffice_present.png'
     },
     {
+        'name': 'libre_office',
         'title': 'Pycharm Community Edition',
         'sub_title':'IDE for Python',
         'url':'#',
         'icon':'static/ico/app-icons/pycharm.png'
     },
     {
+        'name': 'libre_office',
         'title': 'Intellij Idea Community Edition',
         'sub_title':'IDE for java',
         'url':'#',
         'icon':'static/ico/app-icons/intellij_idea.png'
     },
     {
+        'name': 'libre_office',
         'title': 'Scratch',
         'sub_title':'Programming for Kids',
         'url':'#',
         'icon':'static/ico/app-icons/scratch.png'
     },
     {
+        'name': 'libre_office',
         'title': 'VLC videolan Media Player',
         'sub_title':'Media Player',
         'url':'#',
         'icon':'static/ico/app-icons/vlc.png'
     },
     {
+        'name': 'libre_office',
         'title': 'wireshark',
         'sub_title':'Network Debugging Tool',
         'url':'#',
         'icon':'static/ico/app-icons/wireshark.png'
     },
     {
+        'name': 'libre_office',
         'title': 'Inkspace',
         'sub_title':'Image Editor',
         'url':'#',
         'icon':'static/ico/app-icons/inkscape.png'
     },
     {
-            'title': 'mysql',
-            'sub_title': 'MySql Database for Applications',
-            'url': '#',
-            'icon': 'static/ico/app-icons/logo-mysql-170x115.png'
+        'name': 'libre_office',
+        'title': 'mysql',
+        'sub_title': 'MySql Database for Applications',
+        'url': '#',
+        'icon': 'static/ico/app-icons/logo-mysql-170x115.png'
     },
 
     {
-                'title': 'mongodb-org',
-                'sub_title': 'Mongodb Database',
-                'url': '#',
-                'icon': 'static/ico/app-icons/mongodb.png'
+        'name': 'libre_office',
+        'title': 'mongodb-org',
+        'sub_title': 'Mongodb Database',
+        'url': '#',
+        'icon': 'static/ico/app-icons/mongodb.png'
     },
     {
-                'title': 'jupyterhub',
-                'sub_title': 'Jupyterhub notebooks',
-                'url': '#',
-                'icon': 'static/ico/app-icons/jupyterhub.png'
+        'name': 'libre_office',
+        'title': 'jupyterhub',
+        'sub_title': 'Jupyterhub notebooks',
+        'url': '#',
+        'icon': 'static/ico/app-icons/jupyterhub.png'
     }
 
     ]
