@@ -1,6 +1,3 @@
-#----------------------------------------------------------------------------#
-# Imports
-#----------------------------------------------------------------------------#
 
 from flask import Flask, render_template, request, redirect, url_for, flash,session
 import logging
@@ -8,9 +5,6 @@ from logging import Formatter, FileHandler
 from forms import *
 from flask_pymongo import PyMongo
 from src.database import user_model
-#----------------------------------------------------------------------------#
-# App Config.
-#----------------------------------------------------------------------------#
 
 app = Flask(__name__)
 app.config['MONGO_HOST']='127.0.0.1'
@@ -19,14 +13,6 @@ app.config['MONGO_DBNAME']='app_db'
 
 app.secret_key = 'super secret string'
 mongo = PyMongo(app,config_prefix='MONGO')
-#db = SQLAlchemy(app)
-
-# Automatically tear down SQLAlchemy.
-'''
-@app.teardown_request
-def shutdown_session(exception=None):
-    db_session.remove()
-'''
 
 # Login required decorator.
 '''
@@ -40,9 +26,6 @@ def login_required(test):
             return redirect(url_for('login'))
     return wrap
 '''
-#----------------------------------------------------------------------------#
-# Controllers.
-#----------------------------------------------------------------------------#
 @app.route('/')
 def home():
     return render_template('pages/home.html')
@@ -56,6 +39,17 @@ def catalog():
     application_catalog = mongo.db.catalog.find()
     return render_template('pages/catalog.html',application_catalog=application_catalog)
 
+@app.route('/profile')
+def profile():
+    applications = mongo.db.catalog.find()
+    # send resources adn endpoints
+    resources=[{'name':'CPU','type':'hardware','request':'1','limit':'2'},
+    {'name':'CPU','type':'hardware','request':'1','limit':'2'},
+    {'name':'CPU','type':'hardware','request':'1','limit':'2'}]
+    endpoints=[{'name':'CPU','type':'hardware','age':'1','url':'http://apps.namal.edu.pk/username/userapp'},
+    {'name':'CPU','type':'hardware','age':'1','url':'http://apps.namal.edu.pk/username/userapp'},
+    {'name':'CPU','type':'hardware','age':'1','url':'http://apps.namal.edu.pk/username/userapp'}]
+    return render_template('pages/profile.html',applications=applications,resources=resources,endpoints=endpoints)
 @app.route('/catalog/<name>/details')
 def details(name):
     # get data for this application
@@ -78,21 +72,9 @@ def docker_download():
     return
 @app.route('/add')
 def add():
-    # payload={
-    #     'title': 'eclipse',
-    #     'sub_title':'Java IDE by eclipse platform',
-    #     'url':'https://www.eclipse.com',
-    #     'icon':'static/ico/libreoffice_writer_128.jpg'
-    # }
     payload=generate_payload()
     mongo.db.catalog.insert_many(payload)
     return "<h1>User inserted</h1>"
-# @app.route('/login')
-# def login():
-#     form = LoginForm(request.form)
-#     return render_template('forms/login.html', form=form)
-
-
 
 @app.route('/catalog/add_app')
 def add_app():
@@ -121,9 +103,6 @@ if not app.debug:
     file_handler.setLevel(logging.INFO)
     app.logger.addHandler(file_handler)
     app.logger.info('errors')
-#----------------------------------------------------------------------------#
-# Generate Some Payload
-#----------------------------------------------------------------------------#
 
 def generate_payload():
     payload=[
@@ -275,15 +254,8 @@ def protected():
         return 'Logged in as: '+ session['username']
     return 'No Session Found'
 
-#----------------------------------------------------------------------------#
-# Launch.
-#----------------------------------------------------------------------------#
-
-
-
-# Default port:
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 
 # Or specify port manually:
 '''

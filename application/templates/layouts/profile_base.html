@@ -1,0 +1,50 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Your Applications{% endblock %}
+{% block landing %}
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="breadcrumb">
+        <li>Overview</li>
+        <li>Applications</li>
+        <button id="btn-terminal" class="btn btn-default  pull-right">Terminal</button>
+    </div>
+</div>
+<section id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active"><span class=""></span>Overview</a>
+                  <a href="#" class="list-group-item">Applications</a>
+                  <a href="#" class="list-group-item">Resources</a>
+                  <a href="#" class="list-group-item">Settings</a>
+
+                </div>
+                <div class="well">
+                    <h4>Disk Usage</h4>
+                    <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                            60%
+                          </div>
+                        </div>
+                    <h4>Memory Usage</h4>
+                    <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                            60%
+                          </div>
+                        </div>
+                </div>
+
+            </div>
+            <div class="col-md-9">
+                {% block main_content %}
+
+                {% endblock %}
+            </div>
+                
+        </div>
+    </div>
+</section>
+{% endblock %}

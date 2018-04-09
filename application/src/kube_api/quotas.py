@@ -33,3 +33,5 @@ def delete_quotas(namespace):
     r = requests.delete(url=url, headers=headers)
     print(r.text)
     return
+def get_quota(namespace):
+    return

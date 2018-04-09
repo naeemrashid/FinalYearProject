@@ -1,0 +1,3 @@
+kubectl get namespaces
+kubectl get quota student-quota --namespace=testnamespace
+kubectl describe limits default-limits --namespace=testnamespace
