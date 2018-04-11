@@ -1,4 +1,6 @@
 import requests
+from default_config import _base_url
+from default_config import _headers
 def apply_quotas(namespace):
     payload = {"apiVersion": "v1",
                "kind": "ResourceQuota",
@@ -20,18 +22,25 @@ def apply_quotas(namespace):
                    }
                }
                }
-    url = 'http://127.0.0.1:8000/api/v1/namespaces/testnamespace/resourcequotas'
+    url = _base_url+'/api/v1/namespaces/testnamespace/resourcequotas'
     headers = {'content-type': 'application/json'}
     r = requests.post(url=url, json=payload, headers=headers)
     print(r.text)
+    print(r.status_code)
     return
 def modify_quota(namespace,body):
     return
 def delete_quotas(namespace):
-    url = 'http://127.0.0.1:8000/api/v1/namespaces/' + namespace + '/resourcequotas'
+    url = _base_url+'/api/v1/namespaces/' + namespace + '/resourcequotas'
     headers = {'content-type': 'application/json'}
     r = requests.delete(url=url, headers=headers)
     print(r.text)
+    print(r.status_code)
     return
 def get_quota(namespace):
-    return
+    url = _base_url+'/api/v1/namespaces/' + namespace + '/resourcequotas'
+    headers = {'content-type': 'application/json'}
+    r = requests.get(url=url, headers=headers)
+    print(r.text)
+    print(r.status_code)
+    return r.text
