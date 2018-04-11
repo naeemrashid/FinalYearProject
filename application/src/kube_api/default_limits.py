@@ -1,8 +1,8 @@
 import requests
-from default_config import _base_url
-from default_config import _headers
+from default_config import base_url
+from default_config import headers
 def add_default_limits(namespace):
-	url=_base_url+'/api/v1/namespaces/'+namespace+'/limitranges'
+	url=base_url+'/api/v1/namespaces/'+namespace+'/limitranges'
 	payload={"apiVersion":"v1",
 	"kind":"LimitRange",
 	"metadata":{
@@ -13,7 +13,7 @@ def add_default_limits(namespace):
 	print(r.status_code)
 	return r.status_code
 def delete_default_limits(namespace):
-	url= _base_url+'/api/v1/namespaces/'+namespace+'/limitranges'
+	url= base_url+'/api/v1/namespaces/'+namespace+'/limitranges'
 	r=requests.delete(url=url,headers=headers)
 	print(r.text)
 	print(r.status_code)
