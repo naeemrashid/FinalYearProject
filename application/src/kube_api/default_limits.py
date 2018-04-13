@@ -7,7 +7,7 @@ def add_default_limits(namespace):
 	"kind":"LimitRange",
 	"metadata":{
 		"annotations":{
-			"kubectl.kubernetes.io/last-applied-configuration":"{\"apiVersion\":\"v1\",\"kind\":\"LimitRange\",\"metadata\":{\"annotations\":{},\"name\":\"default-limits\",\"namespace\":namespace},\"spec\":{\"limits\":[{\"default\":{\"cpu\":\"200m\",\"memory\":\"512Mi\"},\"defaultRequest\":{\"cpu\":\"100m\",\"memory\":\"256Mi\"},\"type\":\"Container\"}]}}\n"},"name":"default-limits","namespace":namespace},"spec":{"limits":[{"default":{"cpu":"200m","memory":"512Mi"},"defaultRequest":{"cpu":"100m","memory":"256Mi"},"type":"Container"}]}}
+			"kubectl.kubernetes.io/last-applied-configuration":"{\"apiVersion\":\"v1\",\"kind\":\"LimitRange\",\"metadata\":{\"annotations\":{},\"name\":\"default-limits\",\"namespace\":namespace},\"spec\":{\"limits\":[{\"default\":{\"cpu\":\"200m\",\"memory\":\"1024Mi\"},\"defaultRequest\":{\"cpu\":\"100m\",\"memory\":\"512Mi\"},\"type\":\"Container\"}]}}\n"},"name":"default-limits","namespace":namespace},"spec":{"limits":[{"default":{"cpu":"200m","memory":"1024Mi"},"defaultRequest":{"cpu":"100m","memory":"512Mi"},"type":"Container"}]}}
 	r=requests.post(url=url,json=payload,headers=headers)
 	print(r.text)
 	print(r.status_code)

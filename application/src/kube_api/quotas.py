@@ -12,7 +12,7 @@ def apply_quotas(namespace):
                    "hard": {
                        "limits.cpu": "3",
                        "limits.memory": "4Gi",
-                       "persistentvolumeclaims": "5",
+                       "requests.storage":"20Gi",
                        "pods": "20",
                         "replicationcontrollers": "10",
                        "requests.cpu": "2",
@@ -27,7 +27,7 @@ def apply_quotas(namespace):
     r = requests.post(url=url, json=payload, headers=headers)
     print(r.text)
     print(r.status_code)
-    return
+    return r.status_code
 def modify_quota(namespace,body):
     return
 def delete_quotas(namespace):
