@@ -1,19 +1,24 @@
 
-from flask import Flask, render_template, request, redirect, url_for, flash,session
+from flask import Flask, render_template, request, redirect, url_for, flash,session, g
 import logging
 from logging import Formatter, FileHandler
 from forms import *
 from flask_pymongo import PyMongo
+from forms import LoginForm
+from werkzeug.security import generate_password_hash
+from flask_login import login_user, logout_user, login_required
 from src.database import user_model
-
+from flask.ext.login import LoginManager
+from user import User
 app = Flask(__name__)
-app.config['MONGO_HOST']='127.0.0.1'
-app.config['MONGO_PORT']='27017'
-app.config['MONGO_DBNAME']='app_db'
-
-app.secret_key = 'super secret string'
+# app.config['MONGO_HOST']='127.0.0.1'
+# app.config['MONGO_PORT']='27017'
+# app.config['MONGO_DBNAME']='app_db'
+app.config.from_object('config')
 mongo = PyMongo(app,config_prefix='MONGO')
-
+lm = LoginManager()
+lm.init_app(app)
+lm.login_view = 'login'
 # Login required decorator.
 '''
 def login_required(test):
@@ -26,6 +31,7 @@ def login_required(test):
             return redirect(url_for('login'))
     return wrap
 '''
+
 @app.route('/')
 def home():
     return render_template('pages/home.html')
@@ -217,27 +223,31 @@ def register():
         existing_user = users.find_one({'name': request.form['username']})
         if existing_user is None:
             password = request.form['password']
-            users.insert({'name': request.form['username'], 'password': password})
+            password=generate_password_hash(password, method='pbkdf2:sha256')
+            users.insert_one({'name': request.form['username'], 'password': password})
             session['username'] = request.form['username']
             return redirect(url_for('home'))
         flash ('User already exist head towards login')
             # return 'That username already exists!'
     return render_template('forms/register.html')
 
-@app.route('/login',methods = ['GET','POST'])
-def login():
-    users = mongo.db.users
-    if request.method == 'POST':
-        user = users.find_one ({'name': request.form['username']})
-        if user:
-            if  (request.form['password'] == user['password']):
-                    session['username'] = request.form['username']
-                    return redirect(url_for('protected'))
-            # return 'Invalid username/password combination'
-        if (not user) or ((request.form['pass'] != user['password'])):
-            flash("Invalid Username/Password",category="error")
-    return render_template('forms/login.html')
 
+@app.route('/login',methods=['GET','POST'])
+def login():
+    if request.method == 'POST':
+        user = mongo.db.users.find_one({"name": request.form['username']})
+        if user and User.validate_login(user['password'], request.form['password']):
+            user_obj = User(user['name'])
+            login_user(user_obj)
+            return redirect(request.args.get("next") or url_for("home"))
+        flash("Wrong username or password!", category='error')
+    return render_template('forms/login.html', title='login')
+@lm.user_loader
+def load_user(username):
+    u = mongo.db.users.find_one({"name": username})
+    if not u:
+        return None
+    return User(u['name'])
 @app.route('/forgot')
 def forgot():
     form = ForgotForm(request.form)
@@ -245,14 +255,13 @@ def forgot():
 
 @app.route('/logout')
 def logout():
-    session.pop('username',None)
-    return 'Logged out'
+    logout_user()
+    return redirect(url_for('login'))
+
 @app.route('/protected')
-# @flask_login.login_required
+@login_required
 def protected():
-    if 'username' in session:
-        return 'Logged in as: '+ session['username']
-    return 'No Session Found'
+    return 'we are prtecting you'
 
 if __name__ == '__main__':
     app.run(debug=True)
