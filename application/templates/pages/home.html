@@ -5,60 +5,167 @@
 <div class="banner">
     <div class="landing-text">
         <h1>Educational Cloud Appstore</h1>
-        <h3>Pre-configured and Ready to Launch Applications with Docker and Kubernetes</h3>
-        <a href="#" class="btn btn-default btn-lg">Learn More</a>
+        <h2>Pre-configured and Ready to Launch Applications with Docker and Kubernetes</h2>
+        <p class="lead">
+            In an age of easy to install and accessible mobile apps, the students
+    and staff expects to have access to all the software needed in their
+    university courses seamlessly and quickly. The project is aimed to
+    provide an App-store like software delivery system through a private
+    cloud based university data center.
+
+        </p>
+        <a href="#" class="btn btn-primary btn-lg">Learn More</a>
     </div>
 </div>
 {% endblock %}
 {% block content %}
 <div class="padding">
-    <div class="container">
+    <div class="container prob">
         <div class="row">
+            <div class="col-sm-6 text-left">
+                    <h2>Solution to the Problems</h2>
+                <div class="points">
+                    <p class=""><span class="fa fa-check-square-o"></span>It does not work on my machine</p>
+                <p class=""><span class="fa  fa-check-square-o"></span>How do i install and configure this software</p>
+                <p class=""><span class="fa fa-check-square-o"></span>My laptop does not have enough resources to run this application</p>
+                <p class=""><span class="fa fa-check-square-o"></span>I left my work on another machine</p>
+
+                </div>
+            </div>
+
             <div class="col-sm-6">
-                    <img src="static/img/sass.png">
+                    <img src="static/img/student.jpg">
             </div>
-            <div class="col-sm-6 text-center">
-                <p class="lead">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Proin luctus nulla velit, a rutrum lectus tincidunt scelerisque.
-                    Duis eget gravida mi. Nunc semper maximus pharetra. Pellentesque ornare semper nulla, a efficitur sem facilisis sed.
-                    Mauris scelerisque massa sed arcu ullamcorper, et pellentesque ipsum imperdiet.
-                    Duis consectetur tempor sodales.
-                </p>
+        </div>
+    </div>
+</div>
+<div class="bg-container">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <div class="title-box">
+                <h2>Quick and Easy Software delivery</h2>
             </div>
+            <p class="lead">
+                Software delivery with a click of a button. Let us do the
+                heavy lifting of software installation, configuraion and maintenance.
+            </p>
+        </div>
+    </div>
+</div>
+<div class="padding">
+    <div class="container bg-apps">
+    <div class="row">
+        <div class="col-sm-6 text-center apps-img">
+            <img src="static/img/apps.png"/>
+        </div>
+        <div class="col-sm-6 text-center">
+            <div class="title-box">
+            <h2>Ready to Use Application Catalog</h2>
+            </div>
+            <p class="lead">
+                A curated list of application required by teachers and students to meet their
+                demands. Application Catalog includes webapps such as jupyterhub, databases and
+                Desktop apps. Webapps and DBs have cloud installtion options while Desktop apps are
+                provided with docker-compose files.
+            </p>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="bg-simple">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <div class="title-box">
+                <h2>Desktop Apps and Cloud Apps</h2>
+            </div>
+            <p class="lead">
+                Applications in the appstore includes apps which can be installed on the university's private cloud
+                as well as desktop apps. Desktop apps such as wireshark, vlc, gimp etc are provided
+                with docker-compose files. Just download the file and enter <code>docker-compose up </code> and you are all set.
+            </p>
         </div>
     </div>
 </div>
 <div class="padding">
     <div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <img src="static/img/bg-infra.png"/>
+        </div>
+        <div class="col-sm-6 text-center">
+            <div class="title-box">
+            <h2>Manage Your Infrastructure</h2>
+            </div>
+            <p class="lead">
+                Another main purpose of this project is to managing resource
+                consumption. Admin dashboard is provided to monitor resource
+                in real time, define resource limits for students and teachers,
+                load-balancing and all the good stuff to maximize usage of hardware.
+            </p>
+        </div>
+    </div>
+
+</div>
+</div>
+<div class="padding">
+    <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-sm-6 col-md-3 col-xs-12">
-                <h4>Side by Side</h4>
-                <p>
-                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Proin luctus nulla velit, a rutrum lectus tincidunt scelerisque.
-                    Duis eget gravida mi. Nunc semper maximus pharetra. Pellentesque ornare semper nulla, a efficitur sem facilisis sed.
-                    Mauris scelerisque massa sed arcu ullamcorper, et pellentesque ipsum imperdiet.
-                    Duis consectetur tempor sodales.
-                </p>
+        <div class="col-sm-12 text-center">
+          <div class="title-box">
+            <h3>We are using</h3>
+          </div>
+        </div>
+      </div>
+        <div class="row text-center">
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div class="icon">
+                        <img src="static/img/kubernetes.png" alt="...">
+                    </div>
+                    <div class="caption">
+                        <h3>Kubernetes</h3>
+                        <p>Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications.
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-primary" role="button">Learn More</a>
+                        </p>
+                    </div>
+                </div>
 
             </div>
-            <div class="col-lg-3 col-sm-6 col-md-3 col-xs-12">
-                <img src="static/img/sass.png" class="img-responsive">
+             <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div class="icon">
+                        <img src="static/img/helm-transparent.png" alt="...">
+                    </div>
+                    <div class="caption">
+                        <h3>Helm </h3>
+                        <p>Helm helps you manage Kubernetes applications — Helm Charts helps you define, install, and upgrade even the most complex Kubernetes application.
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-primary" role="button">Learn More</a>
+                        </p>
+                    </div>
+                </div>
 
             </div>
-            <div class="col-lg-3 col-sm-6 col-md-3 col-xs-12">
-                <h4>Side by Side</h4>
-                <p>
-                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Proin luctus nulla velit, a rutrum lectus tincidunt scelerisque.
-                    Duis eget gravida mi. Nunc semper maximus pharetra. Pellentesque ornare semper nulla, a efficitur sem facilisis sed.
-                    Mauris scelerisque massa sed arcu ullamcorper, et pellentesque ipsum imperdiet.
-                    Duis consectetur tempor sodales.
-                </p>
-            </div>
-            <div class="col-lg-3 col-sm-6 col-md-3 col-xs-12">
-                 <img src="static/img/less.png" class="img-responsive">
+             <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div class="icon">
+                        <img src="static/img/docker-icon-transparent.png" alt="...">
+                    </div>
+                    <div class="caption">
+                        <h3>Docker</h3>
+                        <p>Docker is the company driving the container movement and the only container platform provider to address every application across the hybrid cloud
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-primary" role="button">Learn More</a>
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

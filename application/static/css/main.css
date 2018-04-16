@@ -32,8 +32,25 @@ html body{
     width: 100%;
     height: 100%;
     font-weight: 300;
+    color: #4c5667;
 }
-    overflow-y: scroll;
+p{
+    color: #9aa7af;
+    line-height: 24px;
+    width: 90%;
+    margin: 10px auto
+
+}h3, h4, h5, button{
+    font-weight: 300;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color:  #616161;
+}
+.title-box{
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #4c5667;
 }
 .navbar{
     font-size: 1.2em;
@@ -157,6 +174,38 @@ a {
     background-size: cover;
     margin-bottom: 2%;
 }
+.bg-container{
+background: url(/static/img/bg-containers.png) no-repeat center center fixed;
+    display: table;
+    height: 100%;
+    width: 100%;
+    padding: 10% 0 10% 0;
+    position: relative;
+    background-size: cover;
+    #opacity: 0.2;
+}
+.bg-container p, .bg-container h2{
+    font-weight: 200;
+    font-size: 150%;
+    color: #FFF;
+}
+
+.bg-apps{
+    background: linear-gradient(to right,#F2F5F5, #FFF);
+}
+.prob {
+ background: linear-gradient(to left,#8BC34A, #FFF);
+}
+.bg-simple{
+    background: #F2F5F5;
+    display: table;
+    height: 100%;
+    width: 100%;
+    padding: 10% 0 10% 0;
+    position: relative;
+    background-size: cover;
+
+}
 .landing-text{
     font-family: 'Roboto';
     color: #FFF;
@@ -165,15 +214,20 @@ a {
     text-align: center;
     vertical-align: middle;
 }
-.landing-text h1{
+h1{
     font-size: 500%;
-    font-weight: 700;
+    font-weight: 400;
 }
 .landing-text h2{
     color: #78c9cf;
-    font-weight: 300;
+    font-weight: 200;
     padding: 2% 0 2% 0;
 }
+.landing-text p{
+    color: #ffffff;
+    font-weight: 300;
+}
+
 .banner-foot{
     background: rgba(0,0,0,.3);
     font-weight: 300;
@@ -193,16 +247,35 @@ a {
     width: 100%;
     background-color: #23415C;
     padding: 5% 5% 5% 5%;
-    color: #FFF;
 }
 #footer .fa{
+    color: #FFF;
     padding: 15px;
     font-size: 25px;
-    color: #FFF;
 }
 #footer .fa:hover{
     color: #D5D5D5;
     text-decoration: none;
+}
+#footer p,#footer h3,#footer h4{
+    color: #FFF;
+}
+.fa-check-square-o {
+    padding: 10px;
+    #padding: 2% 0 2% 0;
+    font-size: 25px;
+    color: #4CAF50;
+}
+.prob h2{
+    color: #23415C;
+}
+.points p{
+    color: #9E9E9E;
+    font-size: 120%;
+    font-weight: 500;
+}
+.points{
+    margin-top:5%;
 }
 /* list group items margin*/
 .list-group .list-group-item {
@@ -247,4 +320,21 @@ a {
   border: none;
   padding: 10px 20px;
   box-shadow: 5px 5px 10px #cccccc;
+}
+.icon{
+width: 20%;
+height: 20%;
+ margin:0 auto;
+}
+.thumbnail{
+    border: none;
+}
+.title-box{
+    margin-bottom: 5%;
+
+}
+.thumbnail:hover{
+ box-shadow: 5px 5px 5px 5px #cccccc;
+}
+.long-dev{
 }
