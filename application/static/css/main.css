@@ -35,12 +35,12 @@ html body{
     color: #4c5667;
 }
 p{
-    color: #9aa7af;
+    color: #424242;
     line-height: 24px;
     width: 90%;
     margin: 10px auto
 
-}h3, h4, h5, button{
+}h3, h4, h5{
     font-weight: 300;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -191,10 +191,28 @@ background: url(/static/img/bg-containers.png) no-repeat center center fixed;
 }
 
 .bg-apps{
-    background: linear-gradient(to right,#F2F5F5, #FFF);
+    background: linear-gradient(to right,#8BC34A, #FFF);
+    display: table;
+    height: 100%;
+    width: 100%;
+    padding: 10% 0 10% 0;
+    position: relative;
+    background-size: cover;
+}
+.infra{
+    display: table;
+    height: 100%;
+    width: 100%;
+    padding: 10% 0 10% 0;
+    position: relative;
 }
 .prob {
  background: linear-gradient(to left,#8BC34A, #FFF);
+  display: table;
+    height: 100%;
+    width: 100%;
+    padding: 10% 0 10% 0;
+    position: relative;
 }
 .bg-simple{
     background: #F2F5F5;
@@ -204,6 +222,7 @@ background: url(/static/img/bg-containers.png) no-repeat center center fixed;
     padding: 10% 0 10% 0;
     position: relative;
     background-size: cover;
+    box-shadow: 5px 5px 10px #cccccc;
 
 }
 .landing-text{
@@ -270,7 +289,7 @@ h1{
     color: #23415C;
 }
 .points p{
-    color: #9E9E9E;
+    color: #424242;
     font-size: 120%;
     font-weight: 500;
 }
@@ -335,6 +354,4 @@ height: 20%;
 }
 .thumbnail:hover{
  box-shadow: 5px 5px 5px 5px #cccccc;
-}
-.long-dev{
 }

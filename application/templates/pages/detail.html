@@ -3,29 +3,18 @@
 {% block content %}
 <div class="row mt-sm-4 mt-md-0">
     <div class="col-sm-12 col-md-8">
-        <div class="media">
+        <div class="media detail-item" style="padding: 30px">
             <span class="media-left media-top">
-                <img src="/static/ico/app-icons/vlc.png">
+                <img src={{ app.icon }} width="100" height="90"/>
             </span>
             <div class="media-body">
-              <h3 class="media-heading">VLC media Player</h3>
-              <p>This shit can play videos :) </p>
+              <h2 class="media-heading" style="margin-left: 20px">{{ app.title }}</h2>
+              <p> {{ app.subtitle }} </p>
             </div>
-          </div>
-        <h3 >Here comes a Heading</h3>
-        <p class="lead">
-             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-             Proin luctus nulla velit, a rutrum lectus tincidunt scelerisque.
-             Duis eget gravida mi. Nunc semper maximus pharetra. Pellentesque ornare semper nulla, a efficitur sem facilisis sed.
-             Mauris scelerisque massa sed arcu ullamcorper, et pellentesque ipsum imperdiet.
-             Duis consectetur tempor sodales.
-        </p>
-        <p class="lead">
-             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-             Proin luctus nulla velit, a rutrum lectus tincidunt scelerisque.
-             Duis eget gravida mi. Nunc semper maximus pharetra. Pellentesque ornare semper nulla, a efficitur sem facilisis sed.
-             Mauris scelerisque massa sed arcu ullamcorper, et pellentesque ipsum imperdiet.
-             Duis consectetur tempor sodales.
+        </div>
+        <h3 style="margin-left: 35px">Description</h3>
+        <p>
+            {{ app.details }}
         </p>
     </div>
     <div class="col-sm-12 col-md-4">

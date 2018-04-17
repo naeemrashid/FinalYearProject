@@ -19,27 +19,15 @@ mongo = PyMongo(app,config_prefix='MONGO')
 lm = LoginManager()
 lm.init_app(app)
 lm.login_view = 'login'
-# Login required decorator.
-'''
-def login_required(test):
-    @wraps(test)
-    def wrap(*args, **kwargs):
-        if 'logged_in' in session:
-            return test(*args, **kwargs)
-        else:
-            flash('You need to login first.')
-            return redirect(url_for('login'))
-    return wrap
-'''
 
 @app.route('/')
 def home():
     return render_template('pages/home.html')
 
-
 @app.route('/about')
 def about():
     return render_template('pages/placeholder.about.html')
+
 @app.route('/catalog')
 def catalog():
     application_catalog = mongo.db.catalog.find()
@@ -56,33 +44,21 @@ def profile():
     {'name':'CPU','type':'hardware','age':'1','url':'http://apps.namal.edu.pk/username/userapp'},
     {'name':'CPU','type':'hardware','age':'1','url':'http://apps.namal.edu.pk/username/userapp'}]
     return render_template('pages/profile.html',applications=applications,resources=resources,endpoints=endpoints)
+
 @app.route('/catalog/<name>/details')
 def details(name):
-    # get data for this application
-    app = {'title':'Sample Application',
-           'subtitle':'A short Description of Application',
-           'description':'''A little paragraph which will tell the description
-            of this application. How to use this application and 
-            what is it meant for''',
-           'service_name':'sample-kubeapp_service',
-           'download_url':'https://github.com/sample/sample-compose.html',
-           'app_url':'https://location/to/application/url.html',
-           'icon':'path/to/appplicaton/icon.png'
-           }
-    return  render_template('pages/detail.html',app=app)
+    app_detail=mongo.db.catalog.find_one({'name':name})
+    app_detail={'title':app_detail['title'],
+                'subtitle':app_detail['subtitle'],
+                'icon': "/"+app_detail['icon'],
+                'details':app_detail['details']}
+    return  render_template('pages/detail.html',app=app_detail)
+
+@login_required
 @app.route('/catalog/<name>/launch')
 def launch_kubeapp():
     return
-@app.route('/catalog/<name>/download')
-def docker_download():
-    return
-@app.route('/add')
-def add():
-    payload=generate_payload()
-    mongo.db.catalog.insert_many(payload)
-    return "<h1>User inserted</h1>"
-
-@app.route('/catalog/add_app')
+@app.route('/catalog/add_app', methods=['GET','POST'])
 def add_app():
     # form = form = RegisterForm(request.form)
     return render_template('forms/add.html')
@@ -109,111 +85,6 @@ if not app.debug:
     file_handler.setLevel(logging.INFO)
     app.logger.addHandler(file_handler)
     app.logger.info('errors')
-
-def generate_payload():
-    payload=[
-    {
-        'name':'eclipse',
-        'title': 'Eclipse',
-        'sub_title':'Java IDE',
-        'url':'#',
-        'icon':'static/ico/app-icons/eclipse-test.png'
-    },
-    {
-        'name': 'libre_office',
-        'title': 'LibreOffice Writer',
-        'sub_title':'Document Editors',
-        'url':'#',
-        'icon':'static/ico/app-icons/libreoffice_writer.png'
-    },
-    {
-        'name': 'libre_office',
-        'title': 'LibreOffice Calculator',
-        'sub_title':'Office Suite',
-        'url':'#',
-        'icon':'static/ico/app-icons/libreoffice_calc.png'
-    },
-    {
-        'name': 'libre_office',
-        'title': 'LibreOffice Draw',
-        'sub_title':'Drawing Tool',
-        'url':'#', 
-        'icon':'static/ico/app-icons/libreoffice_draw.png'
-    },
-    {
-        'name': 'libre_office',
-        'title': 'LibreOffice Impress',
-        'sub_title':'Presentation Editors/Maker',
-        'url':'#',
-        'icon':'static/ico/app-icons/libreoffice_present.png'
-    },
-    {
-        'name': 'libre_office',
-        'title': 'Pycharm Community Edition',
-        'sub_title':'IDE for Python',
-        'url':'#',
-        'icon':'static/ico/app-icons/pycharm.png'
-    },
-    {
-        'name': 'libre_office',
-        'title': 'Intellij Idea Community Edition',
-        'sub_title':'IDE for java',
-        'url':'#',
-        'icon':'static/ico/app-icons/intellij_idea.png'
-    },
-    {
-        'name': 'libre_office',
-        'title': 'Scratch',
-        'sub_title':'Programming for Kids',
-        'url':'#',
-        'icon':'static/ico/app-icons/scratch.png'
-    },
-    {
-        'name': 'libre_office',
-        'title': 'VLC videolan Media Player',
-        'sub_title':'Media Player',
-        'url':'#',
-        'icon':'static/ico/app-icons/vlc.png'
-    },
-    {
-        'name': 'libre_office',
-        'title': 'wireshark',
-        'sub_title':'Network Debugging Tool',
-        'url':'#',
-        'icon':'static/ico/app-icons/wireshark.png'
-    },
-    {
-        'name': 'libre_office',
-        'title': 'Inkspace',
-        'sub_title':'Image Editor',
-        'url':'#',
-        'icon':'static/ico/app-icons/inkscape.png'
-    },
-    {
-        'name': 'libre_office',
-        'title': 'mysql',
-        'sub_title': 'MySql Database for Applications',
-        'url': '#',
-        'icon': 'static/ico/app-icons/logo-mysql-170x115.png'
-    },
-
-    {
-        'name': 'libre_office',
-        'title': 'mongodb-org',
-        'sub_title': 'Mongodb Database',
-        'url': '#',
-        'icon': 'static/ico/app-icons/mongodb.png'
-    },
-    {
-        'name': 'libre_office',
-        'title': 'jupyterhub',
-        'sub_title': 'Jupyterhub notebooks',
-        'url': '#',
-        'icon': 'static/ico/app-icons/jupyterhub.png'
-    }
-
-    ]
-    return payload
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -242,12 +113,14 @@ def login():
             return redirect(request.args.get("next") or url_for("home"))
         flash("Wrong username or password!", category='error')
     return render_template('forms/login.html', title='login')
+
 @lm.user_loader
 def load_user(username):
     u = mongo.db.users.find_one({"name": username})
     if not u:
         return None
     return User(u['name'])
+
 @app.route('/forgot')
 def forgot():
     form = ForgotForm(request.form)
