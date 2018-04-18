@@ -6,6 +6,8 @@ $(document).ready(function() {
 	});
 	$('#cloud-link').click(function(){
 	    console.log('Launch In The Cloud');
+	    name=$('#cloud-link').data('label');
+//	    window.location='/catalog/'+name+'/launch';
 	});
 	$('#compose-link').click(function(){
 	    console.log('Download Compose');

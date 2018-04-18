@@ -20,8 +20,8 @@
     <div class="col-sm-12 col-md-4">
         <h3 class="mb-4">Here we Go...</h3>
         <div class="list-group">
-                <a id="cloud-link" onclick="click()" class="list-group-item active" href="#">Launch In the Cloud</a>
-                <a id="compose-link" class="list-group-item list-group-item-success" href="#">Install Using Docker Compose </a>
+                <a id="cloud-link" class="list-group-item active" data-name="{{ app.label }}" href="{{ url_for('launch_kubeapp', name=app.name) }}">Launch In the Cloud</a>
+                <a id="compose-link" class="list-group-item list-group-item-success" href="{{ app.url }}">Install Using Docker Compose </a>
         </div>
 
 

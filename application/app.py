@@ -10,7 +10,8 @@ from flask_login import login_user, logout_user, login_required, current_user
 from src.database import user_model
 from flask.ext.login import LoginManager
 from user import User
-from src.kube_api import manage_app, namespace, default_config, default_limits, quotas
+from src.kube_api import manage_app, namespace, default_config, default_limits, quotas, kube_svc, helm_proxy
+import requests
 app = Flask(__name__)
 # app.config['MONGO_HOST']='127.0.0.1'
 # app.config['MONGO_PORT']='27017'
@@ -35,15 +36,44 @@ def catalog():
     return render_template('pages/catalog.html',application_catalog=application_catalog)
 
 @app.route('/profile')
+@login_required
 def profile():
-    applications = mongo.db.catalog.find()
-    # send resources adn endpoints
+    endpoints=[]
+    applications=[]
+    # try:
+    #
+    #
+    #
+    # except:
+    #     flash("Unable to connect to API server")
+    # #applications=mongo.db.catalog.find()
+    user_services = kube_svc.list_namespaced_services(current_user.username)
+    nodes = kube_svc.get_nodes()
+    for service in user_services:
+        # flash("key: {key} value: {value}".format(key=service['name'], value=service['port']))
+        url = None
+        if service['type'] == 'NodePort':
+            url = 'http://{ip}:{port}'.format(ip=nodes[0]['ip'], port=service['port'])
+        endpoints.append({
+            'name': service['name'],
+            'type': service['type'],
+            'age': '1day',
+            'url': url
+        })
+        app_db = service['name'].split('-')[1]
+        app = mongo.db.catalog.find_one({'name': app_db})
+        if app is not None:
+            applications.append({
+                'title': app['title'],
+                'subtitle': app['subtitle'],
+                'icon': app['icon']
+            })
     resources=[{'name':'CPU','type':'hardware','request':'1','limit':'2'},
     {'name':'CPU','type':'hardware','request':'1','limit':'2'},
     {'name':'CPU','type':'hardware','request':'1','limit':'2'}]
-    endpoints=[{'name':'CPU','type':'hardware','age':'1','url':'http://apps.namal.edu.pk/username/userapp'},
-    {'name':'CPU','type':'hardware','age':'1','url':'http://apps.namal.edu.pk/username/userapp'},
-    {'name':'CPU','type':'hardware','age':'1','url':'http://apps.namal.edu.pk/username/userapp'}]
+    # endpoints=[{'name':'CPU','type':'hardware','age':'1','url':'http://apps.namal.edu.pk/username/userapp'},
+    # {'name':'CPU','type':'hardware','age':'1','url':'http://apps.namal.edu.pk/username/userapp'},
+    # {'name':'CPU','type':'hardware','age':'1','url':'http://apps.namal.edu.pk/username/userapp'}]
     return render_template('pages/profile.html',applications=applications,resources=resources,endpoints=endpoints)
 
 @app.route('/catalog/<name>/details')
@@ -52,7 +82,10 @@ def details(name):
     app_detail={'title':app_detail['title'],
                 'subtitle':app_detail['subtitle'],
                 'icon': "/"+app_detail['icon'],
-                'details':app_detail['details']}
+                'details':app_detail['details'],
+                'url':app_detail['docker-compose'],
+                'name': app_detail['name'],
+                'label': app_detail['label']}
     return  render_template('pages/detail.html',app=app_detail)
 
 
@@ -60,9 +93,30 @@ def details(name):
 @login_required
 def launch_kubeapp(name):
     username=current_user.username
-    manage_app.install_app('jupyterhub','https://jupyterhub.github.io/helm-chart/jupyterhub-v0.6.tgz','user-321','type: NodePort')
-    return render_template('pages/home.html')
+    application =mongo.db.catalog.find_one({'name':name})
+    if application is not None:
+        chart = application['chart']
+        app_name=username+"-"+application['name']
+        app_namespace=username
+        app_type="NodePort"
+        if helm_proxy.exist(app_namespace,app_name):
+            flash("Application Already Installed")
+        elif chart is not None:
+            response=helm_proxy.install(chart,app_namespace,app_name,app_type)
+            flash(response)
+    #manage_app.install_app('jupyterhub','https://jupyterhub.github.io/helm-chart/jupyterhub-v0.6.tgz','user-321','type: NodePort')
+    return redirect(url_for("profile"))
 
+@app.route('/catalog/<name>/remove')
+@login_required
+def remove_kubeapp(name):
+    app_name=current_user.username+"-"+name
+    response=helm_proxy.uninstall(app_name)
+    if response==200:
+        flash("%s uninsatlled"%app_name)
+    else:
+        flash("unable to remove %s"%app_name)
+    return redirect(url_for("profile"))
 @app.route('/catalog/add_app', methods=['GET','POST'])
 def add_app():
     # form = form = RegisterForm(request.form)
@@ -101,8 +155,10 @@ def register():
             password = request.form['password']
             password=generate_password_hash(password, method='pbkdf2:sha256')
             users.insert_one({'name': request.form['username'], 'password': password})
-            session['username'] = request.form['username']
-            return redirect(url_for('home'))
+            user_namespace=namespace.create_namespace(session['username'])
+            if user_namespace==201:
+                flash("Namespace created successfully")
+            return redirect(url_for('profile'))
         flash ('User already exist head towards login')
             # return 'That username already exists!'
     return render_template('forms/register.html')
@@ -115,7 +171,14 @@ def login():
         if user and User.validate_login(user['password'], request.form['password']):
             user_obj = User(user['name'])
             login_user(user_obj)
-            return redirect(request.args.get("next") or url_for("home"))
+            user_workspace=(user['name'])
+            try:
+                if not namespace.is_namespace_exist(user_workspace):
+                    if namespace.create_namespace(user_workspace) == 201:
+                        flash("workspace created successfully")
+            except requests.exceptions.RequestException:
+                flash("Unable to connect to API server")
+            return redirect(request.args.get("next") or url_for("profile"))
         flash("Wrong username or password!", category='error')
     return render_template('forms/login.html', title='login')
 
