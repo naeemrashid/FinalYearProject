@@ -1,8 +1,8 @@
 import requests
 import json
-from default_config import base_url
-from default_config import headers
-import kube_svc
+from src.kube_api.default_config import base_url
+from src.kube_api.default_config import headers
+from src.kube_api import kube_svc
 def create_ingress(name,namespace):
     services=kube_svc.list_namespaced_services(namespace)
     paths=[]

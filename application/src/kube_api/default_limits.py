@@ -1,6 +1,6 @@
 import requests
-from default_config import base_url
-from default_config import headers
+from src.kube_api.default_config import base_url
+from src.kube_api.default_config import headers
 def add_default_limits(namespace):
 	url=base_url+'/api/v1/namespaces/'+namespace+'/limitranges'
 	payload={"apiVersion":"v1",

@@ -6,10 +6,11 @@ from forms import *
 from flask_pymongo import PyMongo
 from forms import LoginForm
 from werkzeug.security import generate_password_hash
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from src.database import user_model
 from flask.ext.login import LoginManager
 from user import User
+from src.kube_api import manage_app, namespace, default_config, default_limits, quotas
 app = Flask(__name__)
 # app.config['MONGO_HOST']='127.0.0.1'
 # app.config['MONGO_PORT']='27017'
@@ -54,10 +55,14 @@ def details(name):
                 'details':app_detail['details']}
     return  render_template('pages/detail.html',app=app_detail)
 
-@login_required
+
 @app.route('/catalog/<name>/launch')
-def launch_kubeapp():
-    return
+@login_required
+def launch_kubeapp(name):
+    username=current_user.username
+    manage_app.install_app('jupyterhub','https://jupyterhub.github.io/helm-chart/jupyterhub-v0.6.tgz','user-321','type: NodePort')
+    return render_template('pages/home.html')
+
 @app.route('/catalog/add_app', methods=['GET','POST'])
 def add_app():
     # form = form = RegisterForm(request.form)

@@ -1,7 +1,6 @@
 import requests
-from default_config import base_url
-from default_config import headers
-from default_config import tiller_base_url
+from src.kube_api.default_config import headers
+from src.kube_api.default_config import tiller_base_url
 def install(chart_url,namespace,app_name):
 	if exist(namespace,app_name):
 		uninstall(namespace,app_name)

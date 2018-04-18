@@ -1,8 +1,6 @@
-import namespace as nm
-import default_limits as limit
-import quotas as quota
-import helm_proxy as helm
-import ingress
+import src.kube_api.namespace as nm
+import src.kube_api.helm_proxy as helm
+from src.kube_api.default_config import base_url
 def install_app(app_name,chart_url,namespace,extra_config):
     message=None
     if nm.is_namespace_exist(namespace)==False:
@@ -12,7 +10,7 @@ def install_app(app_name,chart_url,namespace,extra_config):
         response=helm.install(chart_url,namespace,app_name)
         print(response)
         if response==201 or response==200:
-            ingress.update_ingress('ingress', namespace)
+            #ingress.update_ingress('ingress', namespace)
             message='Application Install Successful'
         else:
             message='Exception Occured'

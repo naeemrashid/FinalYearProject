@@ -1,6 +1,6 @@
 import requests
-from default_config import base_url
-from default_config import headers
+from src.kube_api.default_config import base_url
+from src.kube_api.default_config import headers
 def apply_quotas(namespace):
     payload = {"apiVersion": "v1",
                "kind": "ResourceQuota",

@@ -1,8 +1,7 @@
 import requests
-from default_config import base_url
-from default_config import headers
-import default_limits as limit
-import quotas as quota
+from src.kube_api.default_config import base_url
+from src.kube_api.default_config import headers
+
 def is_namespace_exist(name):
     url = base_url+'/api/v1/namespaces/'+name
     r = requests.get(url=url, headers=headers)
@@ -36,7 +35,7 @@ def setup_namespace(name):
     nm=create_namespace(name)
     #qts=quota.apply_quotas(name)
     #lim=limit.add_default_limits(name)
-    print("",nm,qts,lim)
-    #if nm==201 and qts==201 and lim==201:
-    #    return 'Setup Successfull'
+    #print("",nm,qts,lim)
+    if nm==201:
+        return 'Setup Successfull'
     return 'Something went wrong'
