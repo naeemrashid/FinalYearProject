@@ -66,7 +66,8 @@ def profile():
             applications.append({
                 'title': app['title'],
                 'subtitle': app['subtitle'],
-                'icon': app['icon']
+                'icon': app['icon'],
+                'name': app['name']
             })
     resources=[{'name':'CPU','type':'hardware','request':'1','limit':'2'},
     {'name':'CPU','type':'hardware','request':'1','limit':'2'},
