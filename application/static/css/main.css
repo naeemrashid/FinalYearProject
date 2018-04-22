@@ -180,7 +180,7 @@ background: url(/static/img/bg-containers.png) no-repeat center center fixed;
     display: table;
     height: 100%;
     width: 100%;
-    padding: 20% 0 20% 0;
+    padding: 10% 0 10% 0;
     position: relative;
     background-size: cover;
     #opacity: 0.2;
@@ -225,7 +225,7 @@ background: url(/static/img/bg-containers.png) no-repeat center center fixed;
     display: table;
     height: 100%;
     width: 100%;
-    padding: 15% 0 15% 0;
+    padding: 10% 0 10% 0;
     position: relative;
     background-size: cover;
     background: #0071A3;
@@ -234,6 +234,9 @@ background: url(/static/img/bg-containers.png) no-repeat center center fixed;
 }
 .bg-simple h2,.bg-simple p{
     color: #FFF;
+}
+.bg-simple img{
+margin-left: 25%;
 }
 
 .landing-text{
@@ -265,7 +268,7 @@ h1{
     padding: 1% 0 1% 0;
 }
 .padding{
-    padding: 20px 0;
+    padding: 5px 0;
 
 
 }
