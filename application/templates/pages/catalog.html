@@ -33,7 +33,7 @@
     <div class="row center-block">
         {% from "_macros.html" import add_application %}
         {% for application in application_catalog %}
-        {{ add_application(application.name, application.title ,application.subtitle,application.docker_compose,application.icon) }}
+        {{ add_application(application.name, application.title ,application.subtitle,application.docker_compose,application.icon,application.label) }}
         {% endfor %}
     </div>
 

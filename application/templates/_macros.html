@@ -1,6 +1,12 @@
-{% macro add_application(name,title,sub_title,url,icon) %}
-<div class="col-md-4 col-sm-12 center-block application" style="width: 273px;" name={{ name }} disabled="true">
+{% macro add_application(name,title,sub_title,url,icon,label) %}
+<div class="col-md-4 col-sm-12 center-block application" style="width: 273px;" name={{ name }}>
     <div class="rnchr-catalog-item-container ">
+        {% if label=="none" %}
+        <div class="feature">
+            <p class="status">Coming Soon</p>
+            <div class="rectangle text-center"></div>
+        </div>
+        {% endif %}
         <div class="rnchr-catalog-item-img-div all-spacer">
             <a class="icon" href={{ url }}>
                 <img class="center-block all-spacer-sm" hide_image="false" src={{ icon }}/>

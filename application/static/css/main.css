@@ -371,3 +371,22 @@ height: 20%;
 .thumbnail:hover{
  box-shadow: 5px 5px 5px 5px #cccccc;
 }
+.feature .rectangle{
+    height:0;
+    width:0;
+    border-top: 100px solid #0468A4;
+    border-right: 100px solid transparent;
+    z-index: 1;
+    position: absolute;
+}
+.feature .status{
+    margin: 0px auto;
+    position: absolute;
+    width: 60%;
+    z-index: 3;
+    font-size: 12px;
+    color: #FFF;
+    transform: rotate(-45deg);
+    left: 0;
+    top: 0;
+}
