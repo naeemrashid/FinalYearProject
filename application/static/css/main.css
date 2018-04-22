@@ -107,6 +107,7 @@ a {
 .navbar-default .navbar-text {
   color: #ffffff;
 }
+
 .navbar-default .navbar-nav > li > a {
   color: #ffffff;
 }
@@ -179,7 +180,7 @@ background: url(/static/img/bg-containers.png) no-repeat center center fixed;
     display: table;
     height: 100%;
     width: 100%;
-    padding: 10% 0 10% 0;
+    padding: 20% 0 20% 0;
     position: relative;
     background-size: cover;
     #opacity: 0.2;
@@ -191,23 +192,28 @@ background: url(/static/img/bg-containers.png) no-repeat center center fixed;
 }
 
 .bg-apps{
-    background: linear-gradient(to right,#8BC34A, #FFF);
+    background: linear-gradient(to right, #0071A3, #FFF);
     display: table;
     height: 100%;
     width: 100%;
-    padding: 10% 0 10% 0;
+    padding: 15% 0 15% 0;
     position: relative;
     background-size: cover;
+}
+.bg-apps img {
+    width: 100%;
+    height: 100%;
 }
 .infra{
     display: table;
     height: 100%;
     width: 100%;
-    padding: 10% 0 10% 0;
+    padding: 15% 0 15% 0;
     position: relative;
+    #background: linear-gradient(to left, #0071A3, #FFF);
 }
 .prob {
- background: linear-gradient(to left,#8BC34A, #FFF);
+ background: linear-gradient(to left, #0071A3, #FFF);
   display: table;
     height: 100%;
     width: 100%;
@@ -219,12 +225,17 @@ background: url(/static/img/bg-containers.png) no-repeat center center fixed;
     display: table;
     height: 100%;
     width: 100%;
-    padding: 10% 0 10% 0;
+    padding: 15% 0 15% 0;
     position: relative;
     background-size: cover;
-    box-shadow: 5px 5px 10px #cccccc;
+    background: #0071A3;
+    #box-shadow: 5px 5px 10px #cccccc;
 
 }
+.bg-simple h2,.bg-simple p{
+    color: #FFF;
+}
+
 .landing-text{
     font-family: 'Roboto';
     color: #FFF;
@@ -234,7 +245,7 @@ background: url(/static/img/bg-containers.png) no-repeat center center fixed;
     vertical-align: middle;
 }
 h1{
-    font-size: 500%;
+    font-size: 400%;
     font-weight: 400;
 }
 .landing-text h2{
@@ -254,11 +265,13 @@ h1{
     padding: 1% 0 1% 0;
 }
 .padding{
-    padding: 80px 0;
+    padding: 20px 0;
+
 
 }
 .padding img{
     width: 100%;
+    height: 100%;
 }
 
 /* styles for foooter*/

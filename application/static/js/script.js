@@ -21,4 +21,5 @@ $(document).ready(function() {
             $(this).closest('.application')[ s.indexOf(g) !== -1 ? 'show' : 'hide' ]();
         });
     })
+    new WOW().init();
 });
