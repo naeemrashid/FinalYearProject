@@ -25,11 +25,7 @@
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 16px;
     line-height: 1.42857;
-    color: #2c3e50;
     font-weight: 300;
-}
-element {
-  height: 341px;
 }
 .center-block {
     display: block;
@@ -42,19 +38,24 @@ element {
     margin-bottom: 10%;
 }
 .rnchr-catalog-item-container .rnchr-catalog-item-img-div {
-  margin-bottom: 20px;
+margin-bottom: 20px;
 }
 .text-center {
   text-align: center;
 }
+.rnchr-catalog-content-div p{
+    font-size: 1em;
+    font-weight: 300;
+}
 .all-spacer {
   padding: 5%;
 }
+.all-spacer img{
+height:75px;
+padding: 3%;
+}
 .all-spacer-sm {
   padding: 3%;
-}
-element {
-  height: 124px;
 }
 .bg-lightGrayTwo {
   background-color: #ecf0f1;

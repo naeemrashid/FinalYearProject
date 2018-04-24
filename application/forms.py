@@ -1,33 +1,15 @@
-from flask_wtf import Form
-from wtforms import TextField, PasswordField
-from wtforms.validators import DataRequired, EqualTo, Length
-
-# Set your classes here.
-
-
-class RegisterForm(Form):
-    name = TextField(
-        'Username', validators=[DataRequired(), Length(min=6, max=25)]
-    )
-    email = TextField(
-        'Email', validators=[DataRequired(), Length(min=6, max=40)]
-    )
-    password = PasswordField(
-        'Password', validators=[DataRequired(), Length(min=6, max=40)]
-    )
-    confirm = PasswordField(
-        'Repeat Password',
-        [DataRequired(),
-        EqualTo('password', message='Passwords must match')]
-    )
+from flask.ext.wtf import Form
+from wtforms import StringField, PasswordField
+from wtforms.validators import DataRequired
 
 
 class LoginForm(Form):
-    name = TextField('Username', [DataRequired()])
-    password = PasswordField('Password', [DataRequired()])
+    """Login form to access writing and settings pages"""
 
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
 
-class ForgotForm(Form):
-    email = TextField(
-        'Email', validators=[DataRequired(), Length(min=6, max=40)]
-    )
+class SignUpForm(Form):
+    username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email',validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])

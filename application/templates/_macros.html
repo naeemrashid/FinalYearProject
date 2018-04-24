@@ -1,6 +1,12 @@
-{% macro add_application(title,sub_title,url,icon) %}
-<div class="col-md-2 col-sm-6 col-xs-12 center-block" style="width: 273px;">
+{% macro add_application(name,title,sub_title,url,icon,label) %}
+<div class="col-md-4 col-sm-12 center-block application" style="width: 273px;" name={{ name }}>
     <div class="rnchr-catalog-item-container ">
+        {% if label=="none" %}
+        <div class="feature">
+            <p class="status">Coming Soon</p>
+            <div class="rectangle text-center"></div>
+        </div>
+        {% endif %}
         <div class="rnchr-catalog-item-img-div all-spacer">
             <a class="icon" href={{ url }}>
                 <img class="center-block all-spacer-sm" hide_image="false" src={{ icon }}/>
@@ -17,4 +23,33 @@
     </div>
 </div>
 
+{% endmacro %}
+{% macro landing_page(title,subtitle) %}
+<div id="home" class="jumbotron">
+    <div class="landing-text">
+        <h1>{{ title }}</h1>
+        <h3>{{ subtitle }}</h3>
+        <a href="#" class="btn btn-default btn-lg">Learn More</a>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro application_block(name,title,subtitle,icon) %}
+<div class="col-md-4 col-sm-12 center-block my-application" style="width: 273px;" name={{ name }}>
+    <div class="rnchr-catalog-item-container ">
+        <div class="rnchr-catalog-item-img-div all-spacer">
+            <a class="icon">
+                <img class="center-block all-spacer-sm" hide-image="false" src={{ icon }}/>
+            </a>
+        </div>
+        <div class="bg-lightGrayTwo rnchr-catalog-content-container" style="height: 124px;">
+        <div class="rnchr-catalog-content-div all-spacer">
+            <h4 class="text-center">
+                <a title={{ title }} >{{ title }}</a>
+            </h4>
+            <p class="text-center">{{ sub_title }}</p>
+        </div>
+    </div>
+    </div>
+</div>
 {% endmacro %}

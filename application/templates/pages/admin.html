@@ -1,0 +1,138 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Your Applications{% endblock %}
+{% block landing %}
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="breadcrumb">
+        <li>Manage Your Applications</li>
+    </div>
+</div>
+<section id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active"><span class=""></span>Overview</a>
+                  <a href="#" class="list-group-item">Applications</a>
+                  <a href="#" class="list-group-item">Resources</a>
+                  <a href="#" class="list-group-item">Settings</a>
+
+                </div>
+                <div class="well">
+                    <h4>Disk Usage</h4>
+                    <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                            60%
+                          </div>
+                        </div>
+                    <h4>Memory Usage</h4>
+                    <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                            60%
+                          </div>
+                        </div>
+                </div>
+
+            </div>
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Applications</h3>
+                  </div>
+                  <div class="panel-body">
+                    Panel content
+
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Resources</h3>
+                  </div>
+                  <div class="panel-body">
+                    <table class="table table-hover">
+                      <tr><th>Name</th>
+                        <th>Type</th>
+                        <th>Age</th>
+                        <th>Status</th>
+                      </tr>
+                      <tr>
+                        <td>vloume-name</td>
+                        <td>vloume</td>
+                        <td>3 days</td>
+                        <td>Status</td>
+                      </tr>
+                      
+                    </table>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Default Limits</h3>
+                  </div>
+                  <div class="panel-body">
+                      <table class="table table-hover">
+                          <tr><th>Name</th>
+                            <th>Requested</th>
+                            <th>Limit</th>
+                            <th>Status</th>
+                          </tr>
+                          <tr>
+                            <td>cpu</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>Active</td>
+                          </tr>
+                          <tr>
+                              <td>Memory</td>
+                              <td>2Gi</td>
+                              <td>4Gi</td>
+                              <td>Active</td>
+                            </tr>
+                            <tr>
+                                <td>vloume claim</td>
+                                <td>5</td>
+                                <td>5</td>
+                                <td>Active</td>
+                              </tr>
+                        </table>
+
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Endpoints</h3>
+                  </div>
+                  <div class="panel-body">
+                      <table class="table table-hover">
+                          <tr><th>Name</th>
+                            <th>Type</th>
+                            <th>Age</th>
+                            <th>Url</th>
+                          </tr>
+                          <tr>
+                            <td>jupyter-hub</td>
+                            <td>web-app</td>
+                            <td>3 days</td>
+                            <td><a>http://apps.namal.edu.pk/username/appname</a></td>
+                          </tr>
+                          <tr>
+                              <td>mongodb</td>
+                              <td>database</td>
+                              <td>3 days</td>
+                              <td><a>http://apps.namal.edu.pk/username/appname</a></td>
+                            </tr>
+                            <tr>
+                                <td>mysql</td>
+                                <td>database</td>
+                                <td>3 days</td>
+                                <td><a>http://apps.namal.edu.pk/username/appname</a></td>
+                              </tr>
+                        </table>
+                  </div>
+                </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,20 +1,62 @@
 {% extends 'layouts/main.html' %}
-{% block title %}Applications Catalog{% endblock %}
-{% block content %}
-
-<div class="page-header">
-    <h1>A list of pre-packaged and configured applications with
-        <code>docker</code> and
-        <code>docker-compose</code>
-    </h1>
+{% block landing %}
+<div class="banner">
+    <div class="landing-text">
+        <h1>Namal Application Catalog</h1>
+        <h2>Quickly and easily launch application on your own machine or
+        head over to cloud option where deployment and management would not be your headache</h2>
+        <a href="#" class="btn btn-primary btn-lg">Learn More</a>
+    </div>
 </div>
-<div class="col-md-10 col-sm-8 col-xs-12 col-sm-offset-1">
+{% endblock %}
+{% block content %}
+<p class="lead">
+   Namal Cloud Appstore application catalog contains a growing
+    list of pre-packaged and ready to run applications.
+    Choose from local installer in the form of docker-compose file
+    (docker should be installed on your system) or proceed to launch in the
+    cloud where application installation and configuraton is
+    taken care by us.
+</p>
+<div class="search-bar">
+<div class="row">
+  <div class="col-lg-10 col-sm-12">
+    <div class="input-group">
+      <input id="search-bar" type="text" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-search" type="button"><span class="fa fa-search"></span></button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+</div>
     <div class="row center-block">
         {% from "_macros.html" import add_application %}
         {% for application in application_catalog %}
-        {{ add_application(application.title ,application.sub_title,application.url,application.icon) }}
+        {{ add_application(application.name, application.title ,application.subtitle,application.docker_compose,application.icon,application.label) }}
         {% endfor %}
     </div>
-</div>
 
+{% endblock %}
+{% block footer %}
+<div class="container-fluid text-center">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Contact Us</h3>
+            <br>
+            <h4>Address and contact info</h4>
+
+        </div>
+        <div class="col-sm-4">
+            <h3>Spread The Word</h3>
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-youtube"></a>
+
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+</div>
 {% endblock %}

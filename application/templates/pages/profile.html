@@ -1,0 +1,78 @@
+{% extends 'layouts/profile_base.html' %}
+{% block title %}Your Applications{% endblock %}
+{% block landing %}
+{% endblock %}
+{% block main_content %}
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Applications</h3>
+                  </div>
+                  <div class="panel-body">
+                      {% from "_macros.html" import application_block %}
+                      {% for application in applications %}
+                      <div class="jumbotron">
+                            <div class="media">
+                              <span class="media-left media-top">
+                                  <img src={{ application.icon }} class="">
+                              </span>
+                              <div class="media-body">
+                                <h3 class="media-heading">{{ application.title }}</h3>
+                                <p class="lead">{{ application.subtitle }}</p>
+                              </div>
+                              
+                            </div>
+                            <div class="btn-group pull-right " role="group" aria-label="...">
+                                <button type="button" class="btn btn-success">Launch</button>
+                                <button type="button" class="btn btn-danger" onclick="window.location.href='/catalog/{{application.name}}/remove'">Remove</button>
+                                <button type="button" class="btn btn-default">Edit</button>
+                                </div>
+                        </div>
+                      {% endfor %}
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Resources</h3>
+                  </div>
+                  <div class="panel-body">
+                    <table class="table table-hover">
+                      <tr><th>Name</th>
+                        <th>Type</th>
+                        <th>Age</th>
+                        <th>Limits</th>
+                      </tr>
+                        {%for resource in resources%}
+                        <tr>
+                            <td>{{ resource.name }}</td>
+                            <td>{{ resource.type }}</td>
+                            <td>{{ resource.request }}</td>
+                            <td>{{ resource.limit }}</td>
+                        </tr>
+                        {% endfor %}
+                      
+                    </table>
+                  </div>
+                </div>
+                
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Endpoints</h3>
+                  </div>
+                  <div class="panel-body">
+                      <table class="table">
+                          <tr><th>Name</th>
+                            <th>Type</th>
+                            <th>Age</th>
+                            <th>Url</th>
+                          </tr>
+                          {%for endpoint in endpoints%}
+                        <tr>
+                            <td>{{ endpoint.name }}</td>
+                            <td>{{ endpoint.type }}</td>
+                            <td>{{ endpoint.age }}</td>
+                            <td><a href= {{ endpoint.url }} >{{ endpoint.url }}</a></td>
+                        </tr>
+                        {% endfor %}
+                        </table>
+                  </div>
+{% endblock %}

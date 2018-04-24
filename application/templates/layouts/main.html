@@ -11,13 +11,14 @@
 
 <!-- styles -->
 <link type="text/css" rel="stylesheet" href="/static/css/font-awesome-4.1.0.min.css" />
-<link type="text/css" rel="stylesheet" href="/static/css/bootstrap-3.1.1.min.css">
-<link type="text/css" rel="stylesheet" href="/static/css/bootstrap-theme-3.1.1.min.css" />
+<link type="text/css" rel="stylesheet" href="/static/css/bootstrap.min.css">
+<!--<link type="text/css" rel="stylesheet" href="/static/css/bootstrap-theme.min.css" />-->
 <link type="text/css" rel="stylesheet" href="/static/css/layout.main.css" />
 <link type="text/css" rel="stylesheet" href="/static/css/main.css" />
 <link type="text/css" rel="stylesheet" href="/static/css/main.responsive.css" />
 <link type="text/css" rel="stylesheet" href="/static/css/main.quickfix.css" />
-<!-- /styles -->
+<link type="text/css" rel="stylesheet" href="/static/css/animate.css" />
+  <!-- /styles -->
 
 <!-- favicons -->
 <link rel="shortcut icon" href="/static/ico/favicon.png">
@@ -30,14 +31,17 @@
 
 <!-- scripts -->
 <script src="/static/js/libs/modernizr-2.8.2.min.js"></script>
+    <script src="static/js/libs/jquery-1.11.1.min.js"></script>
+    <script src="static/js/libs/bootstrap3.3.7.min.js"></script>
+    <script src="{{url_for('static', filename='js/libs/wow.min.js')}}"></script>
 <!--[if lt IE 9]><script src="/static/js/libs/respond-1.4.2.min.js"></script><![endif]-->
 <!-- /scripts -->
 
 </head>
 <body>
 
-  <!-- Wrap all page content here -->
-  <div id="wrap">
+  <!-- Wrap all page content here to work on footer id="#wrap" -->
+  <div id="">
 
     <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top">
@@ -48,34 +52,50 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">App Store </a>
+          <a class="navbar-brand" href="/"></a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li {% if request.endpoint == 'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
-            <li {% if request.endpoint == 'catalog' %} class="active" {% endif %}><a href="{{ url_for('catalog') }}">Applications</a></li>
+            <li {% if request.endpoint == 'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}"><img src="{{url_for('static', filename='ico/crop_logo.png')}}" width="100" height="20" /></a></li>
+            <li {% if request.endpoint == 'catalog' %} class="active" {% endif %}><a href="{{ url_for('catalog') }}">Catalog</a></li>
             <li {% if request.endpoint == 'about' %} class="active" {% endif %}><a href="{{ url_for('about') }}">About</a></li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a>Action</a></li>
-                <li><a>Another action</a></li>
-                <li><a>Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a>Separated link</a></li>
-                <li><a>One more separated link</a></li>
-              </ul>
-            </li>
+            <!--<li class="dropdown">-->
+              <!--<a class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>-->
+              <!--<ul class="dropdown-menu">-->
+                <!--<li><a>Action</a></li>-->
+                <!--<li><a>Another action</a></li>-->
+                <!--<li><a>Something else here</a></li>-->
+                <!--<li class="divider"></li>-->
+                <!--<li class="dropdown-header">Nav header</li>-->
+                <!--<li><a>Separated link</a></li>-->
+                <!--<li><a>One more separated link</a></li>-->
+              <!--</ul>-->
+            <!--</li>-->
           </ul>
           <ul class="nav navbar-nav pull-right">
-            <li><a href="{{ url_for('register') }}">Signup</a></li>
-            <li><a href="{{ url_for('login') }}">Login</a></li>
+             {% if current_user.is_authenticated %}
+              <li><a href="#"> {{ current_user.username }}</a> </li>
+              <li><a href="{{ url_for('logout') }}">Logout</a></li>
+              {% else %}
+              <li><a href="{{ url_for('register') }}">Signup</a></li>
+              <li><a href="{{ url_for('login') }}">Login</a></li>
+              {% endif %}
+
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
+    {% block landing %}
+    <div class="banner">
+      <div class="landing-text">
+          <h1>Educational Cloud Appstore</h1>
+          <h2>Pre-configured and Ready to Launch Applications with Docker and Kubernetes</h2>
+          <a href="#" class="btn btn-primary btn-lg">Learn More</a>
+      </div>
+  </div>
+    {% endblock %}
     <!-- Begin page content -->
     <main id="content" role="main" class="container">
 
@@ -89,7 +109,6 @@
           {% endfor %}
         {% endif %}
       {% endwith %}
-
       {% block content %}{% endblock %}
       
     </main>
@@ -99,22 +118,38 @@
   <div id="footer">
     <div class="container">
       <p>Numal College Minawali &copy; All Rights Reserved.</p>
-      {% block footer %}{% endblock %}
+      {% block footer %}
+      <div class="container-fluid text-center">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Contact Us</h3>
+            <br>
+            <h4>Address and contact info</h4>
+
+        </div>
+        <div class="col-sm-4">
+            <h3>Spread The Word</h3>
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-youtube"></a>
+
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+</div>
+      {% endblock %}
     </div>
   </div>
 
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script type="text/javascript" src="/static/js/libs/jquery-1.11.1.min.js"><\/script>')</script>
-  <script type="text/javascript" src="/static/js/libs/bootstrap-3.1.1.min.js" defer></script>
+  <script type="text/javascript" src="/static/js/libs/bootstrap3.3.7.min.js" defer></script>
   <script type="text/javascript" src="/static/js/plugins.js" defer></script>
   <script type="text/javascript" src="/static/js/script.js" defer></script>
   <!-- Google Analytics - Change UA-XXXXX-X to be your site's ID -->
-  <script>
-  window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
-  Modernizr.load({
-    load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
-  });
-  </script>
+
 
 </body>
 </html>

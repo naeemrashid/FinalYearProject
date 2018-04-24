@@ -1,24 +1,102 @@
 {% extends 'layouts/main.html' %}
-{% block title %}Applications Catalog{% endblock %}
+{% block title %}Home{% endblock %}
 {% block content %}
+<div class="row mt-sm-4 mt-md-0">
+    <div class="col-sm-12 col-md-8">
+        <div class="media detail-item" style="padding: 30px">
+            <span class="media-left media-top">
+                <img src={{ app.icon }} width="100" height="90"/>
+            </span>
+            <div class="media-body">
+              <h2 class="media-heading" style="margin-left: 20px">{{ app.title }}</h2>
+              <p> {{ app.subtitle }} </p>
+            </div>
+        </div>
+        <h3 style="margin-left: 35px">Description</h3>
+        <p>
+            {{ app.details }}
+        </p>
+    </div>
+    <div class="col-sm-12 col-md-4">
+        <h3 class="mb-4">Here we Go...</h3>
+        <div class="list-group">
+                <a id="cloud-link" class="list-group-item active" data-name="{{ app.label }}" href="{{ url_for('launch_kubeapp', name=app.name) }}">Launch In the Cloud</a>
+                <a id="compose-link" class="list-group-item list-group-item-success" href="{{ app.url }}">Install Using Docker Compose </a>
+        </div>
 
-<div class="page-header">
-    <h1>This section includes details of the application selected by user and diffrent install methods etc.
-        <code>docker</code> and
-        <code>docker-compose</code>
-    </h1>
+
+    </div>
+
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-sm-12 col-md-push-8">
-            <aside>
-                <div>
-                    
+<div class="padding">
+    <div class="container">
+        <div class="row">
+        <div class="col-sm-12 text-center">
+          <div class="title-box">
+            <p style="color: #cccccc"> Why should I use?</p>
+          </div>
+        </div>
+      </div>
+        <div class="row text-center">
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div class="icon">
+                        <img src="/static/ico/click.png" alt="...">
+                    </div>
+                    <div class="caption">
+                        <h3>Installation Made Easy</h3>
+                        <p>Installation is as easy as single click. With the help
+                            of <b>Docker</b>, <b>docker-compose</b> and <b>Helm Charts</b>
+                            application are pre-packaged with little or no configs by
+                            user-end.
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-primary" role="button">Learn More</a>
+                        </p>
+                    </div>
                 </div>
-            </aside>
 
+            </div>
+             <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div class="icon">
+                        <img src="/static/ico/settings.png" alt="...">
+                    </div>
+                    <div class="caption">
+                        <h3>Pre-configured </h3>
+                        <p>Application are configured to meet most of the students demands but with additional
+                            options provided to configure application.
+
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-primary" role="button">Learn More</a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+             <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div class="icon">
+                        <img src="/static/ico/24-hours.png" alt="...">
+                    </div>
+                    <div class="caption">
+                        <h3>Availability</h3>
+                        <p>Kubernetes as cloud platform is used to ensure high availability of applications.</p>
+                        <p>
+                            <a href="#" class="btn btn-primary" role="button">Learn More</a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
 
+
+<!--<div class="page-header">-->
+  <!--<h1>Sticky footer with fixed navbar</h1>-->
+<!--</div>-->
+<!--<p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added within <code>#wrap</code> with <code>padding-top: 60px;</code> on the <code>.container</code>.</p>-->
 {% endblock %}
