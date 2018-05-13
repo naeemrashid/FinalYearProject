@@ -3,21 +3,29 @@ from flask import Flask, render_template, request, redirect, url_for, flash,sess
 import logging
 from logging import Formatter, FileHandler
 from forms import *
-from flask_pymongo import PyMongo
+import pymongo
 from forms import LoginForm
 from werkzeug.security import generate_password_hash
-from flask_login import login_user, logout_user, login_required, current_user
+from flask_login import login_user, logout_user, login_required, current_user, UserMixin
 from src.database import user_model
 from flask.ext.login import LoginManager
 from user import User
 from src.kube_api import manage_app, namespace, default_config, default_limits, quotas, kube_svc, helm_proxy
 import requests
+import flask_admin as admin
+from flask_admin.contrib.pymongo import ModelView, filters
+from wtforms import form, fields
+from bson.objectid import ObjectId
+from werkzeug.local import LocalProxy
+from pymongo import MongoClient
 app = Flask(__name__)
 # app.config['MONGO_HOST']='127.0.0.1'
 # app.config['MONGO_PORT']='27017'
 # app.config['MONGO_DBNAME']='app_db'
+
 app.config.from_object('config')
-mongo = PyMongo(app,config_prefix='MONGO')
+conn = pymongo.Connection()
+db=conn.app_db
 lm = LoginManager()
 lm.init_app(app)
 lm.login_view = 'login'
@@ -32,7 +40,7 @@ def about():
 
 @app.route('/catalog')
 def catalog():
-    application_catalog = mongo.db.catalog.find()
+    application_catalog = db.catalog.find()
     return render_template('pages/catalog.html',application_catalog=application_catalog)
 
 @app.route('/profile')
@@ -46,7 +54,7 @@ def profile():
     #
     # except:
     #     flash("Unable to connect to API server")
-    # #applications=mongo.db.catalog.find()
+    # #applications=db.catalog.find()
     user_services = kube_svc.list_namespaced_services(current_user.username)
     nodes = kube_svc.get_nodes()
     for service in user_services:
@@ -61,7 +69,7 @@ def profile():
             'url': url
         })
         app_db = service['name'].split('-')[1]
-        app = mongo.db.catalog.find_one({'name': app_db})
+        app = db.catalog.find_one({'name': app_db})
         if app is not None:
             applications.append({
                 'title': app['title'],
@@ -79,12 +87,12 @@ def profile():
 
 @app.route('/catalog/<name>/details')
 def details(name):
-    app_detail=mongo.db.catalog.find_one({'name':name})
+    app_detail=db.catalog.find_one({'name':name})
     app_detail={'title':app_detail['title'],
                 'subtitle':app_detail['subtitle'],
                 'icon': "/"+app_detail['icon'],
                 'details':app_detail['details'],
-                'url':app_detail['docker-compose'],
+                'url':app_detail['docker_compose'],
                 'name': app_detail['name'],
                 'label': app_detail['label']}
     return  render_template('pages/detail.html',app=app_detail)
@@ -94,7 +102,7 @@ def details(name):
 @login_required
 def launch_kubeapp(name):
     username=current_user.username
-    application =mongo.db.catalog.find_one({'name':name})
+    application =db.catalog.find_one({'name':name})
     if application is not None:
         chart = application['chart']
         app_name=username+"-"+application['name']
@@ -149,16 +157,18 @@ if not app.debug:
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-    users = mongo.db.users
+    users = db.users
     if request.method == 'POST':
         existing_user = users.find_one({'name': request.form['username']})
         if existing_user is None:
             password = request.form['password']
             password=generate_password_hash(password, method='pbkdf2:sha256')
-            users.insert_one({'name': request.form['username'], 'password': password})
+            users.insert({'name': request.form['username'], 'password': password})
             user_namespace=namespace.create_namespace(session['username'])
             if user_namespace==201:
                 flash("Namespace created successfully")
+            if current_user.username=='admin':
+                return redirect('/admin')
             return redirect(url_for('profile'))
         flash ('User already exist head towards login')
             # return 'That username already exists!'
@@ -168,7 +178,7 @@ def register():
 @app.route('/login',methods=['GET','POST'])
 def login():
     if request.method == 'POST':
-        user = mongo.db.users.find_one({"name": request.form['username']})
+        user = db.users.find_one({"name": request.form['username']})
         if user and User.validate_login(user['password'], request.form['password']):
             user_obj = User(user['name'])
             login_user(user_obj)
@@ -179,13 +189,15 @@ def login():
                         flash("workspace created successfully")
             except requests.exceptions.RequestException:
                 flash("Unable to connect to API server")
+            if current_user.username=='admin':
+                return redirect('/admin')
             return redirect(request.args.get("next") or url_for("profile"))
         flash("Wrong username or password!", category='error')
     return render_template('forms/login.html', title='login')
 
 @lm.user_loader
 def load_user(username):
-    u = mongo.db.users.find_one({"name": username})
+    u = db.users.find_one({"name": username})
     if not u:
         return None
     return User(u['name'])
@@ -205,7 +217,41 @@ def logout():
 def protected():
     return 'we are prtecting you'
 
+
+
+
+# User admin
+class UserForm(form.Form):
+    name = fields.StringField('Name')
+    title = fields.StringField('Title')
+    subtitle = fields.StringField('Subtitle')
+    details = fields.StringField('Details')
+    label = fields.TextField('Label')
+    chart = fields.StringField('Chart URL')
+    icon = fields.StringField('Icon URL')
+    docker_compose = fields.StringField('docker-compose file URL')
+
+class AdminView(ModelView):
+    column_list = ('name', 'title', 'subtitle','details','label','chart','docker_compose','icon')
+    column_sortable_list = ('name', 'title', 'subtitle')
+
+    form = UserForm
+
+    def on_model_change(self, form, model):
+        user_id = model.get('user_id')
+        model['user_id'] = ObjectId(user_id)
+        return model
+    def is_accessible(self):
+        if current_user=='admin':
+            True
+        False
+
+
+
+
 if __name__ == '__main__':
+    admin = admin.Admin(app, name='Admin')
+    admin.add_view(AdminView(db.catalog, 'Manage'))
     app.run(debug=True)
 
 # Or specify port manually:

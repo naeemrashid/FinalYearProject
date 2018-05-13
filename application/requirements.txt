@@ -1,8 +1,9 @@
 Fabric
 Flask-WTF
 WTForms
-flask_pymongo
+pymongo==2.4.1
 coverage
 kubernetes
 flask-login==0.4.1
 Werkzeug==0.10.1
+flask_admin==1.5.0
