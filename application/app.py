@@ -163,12 +163,10 @@ def register():
         if existing_user is None:
             password = request.form['password']
             password=generate_password_hash(password, method='pbkdf2:sha256')
-            users.insert({'name': request.form['username'], 'password': password})
+            users.insert_one({'name': request.form['username'], 'password': password})
             user_namespace=namespace.create_namespace(session['username'])
             if user_namespace==201:
                 flash("Namespace created successfully")
-            if current_user.username=='admin':
-                return redirect('/admin')
             return redirect(url_for('profile'))
         flash ('User already exist head towards login')
             # return 'That username already exists!'
@@ -189,8 +187,6 @@ def login():
                         flash("workspace created successfully")
             except requests.exceptions.RequestException:
                 flash("Unable to connect to API server")
-            if current_user.username=='admin':
-                return redirect('/admin')
             return redirect(request.args.get("next") or url_for("profile"))
         flash("Wrong username or password!", category='error')
     return render_template('forms/login.html', title='login')
@@ -220,6 +216,7 @@ def protected():
 
 
 
+
 # User admin
 class UserForm(form.Form):
     name = fields.StringField('Name')
@@ -241,12 +238,8 @@ class AdminView(ModelView):
         user_id = model.get('user_id')
         model['user_id'] = ObjectId(user_id)
         return model
-    def is_accessible(self):
-        if current_user=='admin':
-            True
-        False
-
-
+    # def is_accessible(self):
+    #     current_user.has_role('admin')
 
 
 if __name__ == '__main__':
