@@ -7,3 +7,4 @@ kubernetes
 flask-login==0.4.1
 Werkzeug==0.10.1
 flask_admin==1.5.0
+flask_testing==0.7.1

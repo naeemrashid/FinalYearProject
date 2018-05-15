@@ -23,7 +23,7 @@ app = Flask(__name__)
 # app.config['MONGO_PORT']='27017'
 # app.config['MONGO_DBNAME']='app_db'
 
-app.config.from_object('config')
+app.config.from_object('config.BaseConfig')
 conn = pymongo.Connection()
 db=conn.app_db
 lm = LoginManager()
@@ -163,7 +163,7 @@ def register():
         if existing_user is None:
             password = request.form['password']
             password=generate_password_hash(password, method='pbkdf2:sha256')
-            users.insert_one({'name': request.form['username'], 'password': password})
+            users.insert({'name': request.form['username'], 'password': password})
             user_namespace=namespace.create_namespace(session['username'])
             if user_namespace==201:
                 flash("Namespace created successfully")
