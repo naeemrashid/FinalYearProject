@@ -2,6 +2,7 @@ import unittest
 from flask.ext.testing import TestCase
 from app import app,conn
 import json
+import wtforms
 
 db=conn.test_app
 class BaseTestCase(TestCase):
@@ -54,28 +55,14 @@ class FlaskTestCase(BaseTestCase):
     def test_detail(self):
         response = self.client.get('/catalog/mongodb/details', content_type='html/text')
         self.assertEqual(response.status_code,200)
-    def test_register_user(self):
-        data={
-            "username":"test",
-            "email":"test@testing.com",
-            "password":"test",
-            "confirm":"test"
-            }
-        response = self.client.post('/register',
-        data=json.dumps(data),
+    def test_catalog_applicaton_install(self):
+        response = self.client.get('/catalog/mongodb/launch', content_type='html/text',
         follow_redirects=True)
-        self.assertEqual(response.status_code,200)
-    def login_user(self):
-        data={
-            "username":"test",
-            "password":"test"
-        }
-        response = self.client.post('/login',
-        data=json.dumps(data),
+        self.assertIn(b'Login',response.data)
+    def test_profile(self):
+        response = self.client.get('/profile', content_type='html/text',
         follow_redirects=True)
-        self.assertEqual(response.status_code,200)
-    # def test_catalog_applicaton_install(self):
-    #     response = self.client.get('/catalog', content_type='html/text')
-    #     self.assertIn(b'Mongodb',response.data)
+        self.assertIn(b'Login',response.data)
+    
 if __name__=='__main__':
     unittest.main()

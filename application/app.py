@@ -164,6 +164,7 @@ def register():
             password = request.form['password']
             password=generate_password_hash(password, method='pbkdf2:sha256')
             users.insert({'name': request.form['username'], 'password': password})
+            session['username']=request.form['username']
             user_namespace=namespace.create_namespace(session['username'])
             if user_namespace==201:
                 flash("Namespace created successfully")
