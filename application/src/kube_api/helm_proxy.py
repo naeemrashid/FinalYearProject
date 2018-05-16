@@ -6,12 +6,12 @@ def install(chart_url,namespace,app_name,config):
 		uninstall(namespace,app_name)
 	data=  {
 	            "chart_url": chart_url,
-		        "namespace": namespace
-				#"values":{
+		        "namespace": namespace,
+				"values": {
 				# 	#"raw":"{\"proxy\":{\"secretToken\":\"df9b0056bb6e47580b9ea01124d6347dbb73b33e0a76cda27c2ce78e56191b4c\"}}"
-				#	"raw":"{\"service.type\":\"NodePort\"}"
+					"raw":"{\"service.type\":\"NodePort\"}"
 
-				#}
+				}
             }
 	#"https://raw.githubusercontent.com/naeemkhan12/helm-chart/master/jupyter-notebook-0.1.0.tgz"
 	response=requests.post(url=tiller_base_url+'/tiller/v2/releases/'+app_name+'/json',headers=headers,json=data)
