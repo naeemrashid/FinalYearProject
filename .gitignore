@@ -27,6 +27,7 @@ wheels/
 .installed.cfg
 *.egg
 *.png
+!poster.png
 
 # IDE setttings /
 .vscode
