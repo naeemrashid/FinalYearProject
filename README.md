@@ -1,11 +1,34 @@
-# FinalYearProject
-### You need to do a HELL amount of WORK to get HAPPINESS from what you have DONE
-- [x] Create application images with Dockerfiles or DockerCompose.
-- [ ] A web-portal hosted on a web-server integrated with Dockerhub or database with an access to list of images available on DockerHub.
-- [x] Multi-node Installation of OpenStack.
-- [ ] Creation of virtual laboratory with VNC enabled remote Desktops powered by OpenStack.
-- [ ] Integration of Virtual lab with web-portal.
-- [ ] Automation of process involving downloading and running of selected application from web-portal to user local machine or on virtual laboratory.
+# Appstore with Cloud based University DataCenter *powered by Kubernetes*
 
+## Description
+The project is aimed to provide an App-store like software delivery sys-
+tem through a private cloud based university data center. Proposed plan
+includes development of an Appstore for availability of applications cata-
+logue, a private data-center for application deployment and web-portal for
+easy accessibility as well as a standard application packaging format for
+custom configured applications.
 
-![Diagram](https://github.com/naeemkhan12/FinalYearProject/blob/python-client/EducationalCloudResources/structure.png)
+## tl;dr;
+An appstore for students to easily access applications from university cloud without any need to install on local machines.
+Project uses Kubernetes, Docker and Helm for infrastructure and applications
+management and orchestration. Applications are deployed with Helm on university’s
+private cloud powered by Kubernetes and are integrated with web-portal developed in python-flask.
+
+## Note
+This project is a work of a graduate student and is not ready for production or any sort of business need.
+
+### Poster
+[poster](EducationalCloudResources/poster.png)
+
+### System Architecture
+[architecture](EducationalCloudResources/project-archi.png)
+
+### Technologies Used
++ [Kubernetes](https://kubernetes.io/)
++ [Helm](https://helm.sh/)
++ [Swift](https://github.com/appscode/swift)
++ [Docker](https://www.docker.com/)
++ [Ansible](https://www.ansible.com/)
++ [Vagrant](https://www.vagrantup.com/)
++ [MongoDB](https://www.mongodb.com/)
++ [Python Flask](flask.pocoo.org/)
