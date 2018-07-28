@@ -1,4 +1,5 @@
-# Appstore with Cloud based University DataCenter *powered by Kubernetes*
+# Appstore with Cloud based University DataCenter
+*powered by Kubernetes*
 
 ## Description
 The project is aimed to provide an App-store like software delivery sys-
@@ -18,10 +19,10 @@ private cloud powered by Kubernetes and are integrated with web-portal developed
 This project is a work of a graduate student and is not ready for production or any sort of business need.
 
 ### Poster
-[poster](EducationalCloudResources/poster.png)
+![poster](EducationalCloudResources/poster.pdf)
 
 ### System Architecture
-[architecture](EducationalCloudResources/project-archi.png)
+![architecture](EducationalCloudResources/structure.png)
 
 ### Technologies Used
 + [Kubernetes](https://kubernetes.io/)
