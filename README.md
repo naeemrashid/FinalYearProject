@@ -19,10 +19,7 @@ private cloud powered by Kubernetes and are integrated with web-portal developed
 This project is a work of a graduate student and is not ready for production or any sort of business need.
 
 ### Poster
-![poster](EducationalCloudResources/poster.pdf)
-
-### System Architecture
-![architecture](EducationalCloudResources/structure.png)
+![poster](EducationalCloudResources/poster.png)
 
 ### Technologies Used
 + [Kubernetes](https://kubernetes.io/)
